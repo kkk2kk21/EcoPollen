@@ -4,20 +4,20 @@ EcoPollen - веб-приложение для мониторинга пыльц
 
 ## Что нужно для запуска
 
-- Docker
+Docker
 
 ## Юнит-тесты
 
 Юнит-тесты вынесены отдельно от основного кода:
 
-- backend: `tests/backend`
-- frontend: `frontend/tests`
+backend: `tests/backend`
+frontend: `frontend/tests`
 
 ## Структура
 
-- `backend` - API и работа с базой данных
-- `frontend` - клиентская часть
-- `docker-compose.yml` - основной файл запуска проекта
+`backend` - API и работа с базой данных
+`frontend` - клиентская часть
+`docker-compose.yml` - основной файл запуска проекта
 
 ## Запуск
 
@@ -27,5 +27,5 @@ docker compose up -d --build
 
 После запуска:
 
-- сайт: `http://localhost`
-- Swagger: `http://localhost/docs`
+сайт: `http://localhost`
+Swagger: `http://localhost/docs`
