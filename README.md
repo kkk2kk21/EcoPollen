@@ -5,7 +5,6 @@ EcoPollen - веб-приложение для мониторинга пыльц
 ## Что нужно для запуска
 
 - Docker
-- Docker Compose
 
 ## Юнит-тесты
 
@@ -23,7 +22,6 @@ EcoPollen - веб-приложение для мониторинга пыльц
 ## Запуск
 
 ```powershell
-Copy-Item .env.example .env
 docker compose up -d --build
 ```
 
