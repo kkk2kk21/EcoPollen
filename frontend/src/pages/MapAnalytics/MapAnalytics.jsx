@@ -643,6 +643,7 @@ async function getCachedOrFetch({
 
 function buildLayerCacheKey(layerId, taxonKey, day, queryBbox) {
   return JSON.stringify({
+    version: 2,
     layerId,
     taxonKey,
     day,
@@ -655,6 +656,7 @@ function buildLayerCacheKey(layerId, taxonKey, day, queryBbox) {
 
 function buildTimeseriesCacheKey(selectedPlace, taxonKey) {
   return JSON.stringify({
+    version: 1,
     taxonKey,
     days: 7,
     location_id: selectedPlace?.location_id ?? null,
@@ -675,6 +677,17 @@ function initialSelectedLines(seriesList = []) {
 
 function lineColor(source) {
   return SOURCE_COLORS[source] || "#475467";
+}
+
+function latestObservedDay(points = []) {
+  let latest = null;
+  for (const point of points) {
+    const observedDay = isoDay(point?.observed_at);
+    if (observedDay && (!latest || observedDay > latest)) {
+      latest = observedDay;
+    }
+  }
+  return latest;
 }
 
 function placeFocusZoom(place) {
@@ -1073,7 +1086,7 @@ export default function MapAnalytics() {
 
                 return {
                   points,
-                  effectiveDay: data.day || day,
+                  effectiveDay: data.effective_day || latestObservedDay(points) || data.day || day,
                   note: data.note || "",
                 };
               },

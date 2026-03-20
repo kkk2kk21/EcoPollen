@@ -1259,8 +1259,12 @@ def heatmap_db(
         )
 
     points = []
+    effective_day = None
     for loc_id, name, kind, lat0, lon0, observed_at, value, unit in rows:
         danger_level = to_danger_level(value, unit, taxon_key=taxon_key)
+        observed_day = observed_at.date().isoformat() if observed_at else None
+        if observed_day is not None and (effective_day is None or observed_day > effective_day):
+            effective_day = observed_day
         points.append({
             "location": {"id": loc_id, "name": name, "kind": kind},
             "lat": lat0,
@@ -1276,6 +1280,7 @@ def heatmap_db(
 
     return {
         "day": requested_day.isoformat(),
+        "effective_day": effective_day,
         "taxon_key": taxon_key,
         "source": source_key,
         "points": points,
