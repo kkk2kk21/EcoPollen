@@ -1,0 +1,2595 @@
+{
+  "format": "ecopollen-json-ontology",
+  "version": 1,
+  "sources": {
+    "mesh": "https://nlmpubs.nlm.nih.gov/projects/mesh/MESH_FILES/xmlmesh/desc2026.xml",
+    "doid": "https://purl.obolibrary.org/obo/doid.obo",
+    "po": "https://purl.obolibrary.org/obo/po.obo"
+  },
+  "concepts": [
+    {
+      "id": "ragweed_pollen",
+      "type": "allergen",
+      "label": "Амброзия",
+      "standalone": true,
+      "aliases": [
+        "амброзия",
+        "амброзию",
+        "амброзией",
+        "амброзии",
+        "амброзииа",
+        "амброзииы",
+        "амброзииом",
+        "амброзииу",
+        "амброзиие",
+        "амброзиюом",
+        "амброзиюу",
+        "амброзиюе",
+        "амброзиюа",
+        "амброзиюы",
+        "пыльца амброзии",
+        "пыльца амброзииа",
+        "пыльца амброзииы",
+        "пыльца амброзииом",
+        "пыльца амброзииу",
+        "пыльца амброзиие"
+      ],
+      "chips": [
+        "Ragweed",
+        "Ambrosia",
+        "ragweed pollen"
+      ],
+      "query_base_en": "ragweed pollen",
+      "query_terms": [
+        "ragweed pollen",
+        "Ambrosia allergy",
+        "ragweed pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "birch_pollen",
+      "type": "allergen",
+      "label": "Береза",
+      "standalone": true,
+      "aliases": [
+        "береза",
+        "березы",
+        "березе",
+        "березой",
+        "березу",
+        "березою",
+        "березыа",
+        "березыы",
+        "березыом",
+        "березыу",
+        "березые",
+        "березуы",
+        "березуе",
+        "березуа",
+        "березуом",
+        "березуу",
+        "пыльца березы",
+        "пыльца березыа",
+        "пыльца березыы",
+        "пыльца березыом",
+        "пыльца березыу",
+        "пыльца березые"
+      ],
+      "chips": [
+        "Birch",
+        "Betula",
+        "birch pollen"
+      ],
+      "query_base_en": "birch pollen",
+      "query_terms": [
+        "birch pollen",
+        "Betula allergy",
+        "birch pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "oak_pollen",
+      "type": "allergen",
+      "label": "Дуб",
+      "standalone": true,
+      "aliases": [
+        "дуб",
+        "дубом",
+        "дубы",
+        "дуба",
+        "дубу",
+        "дубе",
+        "дубой",
+        "дубою",
+        "дубуа",
+        "дубуы",
+        "дубуу",
+        "дубуе",
+        "дубуом",
+        "пыльца дуба",
+        "пыльца дубы",
+        "пыльца дубой",
+        "пыльца дубу",
+        "пыльца дубе",
+        "пыльца дубою"
+      ],
+      "chips": [
+        "Oak",
+        "Quercus",
+        "oak pollen"
+      ],
+      "query_base_en": "oak pollen",
+      "query_terms": [
+        "oak pollen",
+        "Quercus allergy",
+        "oak pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "grass_pollen",
+      "type": "allergen",
+      "label": "Злаки",
+      "standalone": true,
+      "aliases": [
+        "злаки",
+        "злакие",
+        "злакиом",
+        "злакиа",
+        "злакиы",
+        "злакиу",
+        "злаковые",
+        "злаковыеы",
+        "злаковыеа",
+        "злаковыеом",
+        "злаковыее",
+        "злаковыеу",
+        "злаков",
+        "злакову",
+        "злакове",
+        "злаковом",
+        "злакова",
+        "злаковы",
+        "злаковых",
+        "злаковыха",
+        "злаковыхе",
+        "злаковыху",
+        "злаковыхом",
+        "злаковыхы",
+        "пыльца злаков",
+        "пыльца злакову",
+        "пыльца злакове",
+        "пыльца злаковом",
+        "пыльца злакова",
+        "пыльца злаковы",
+        "пыльца злаковых",
+        "пыльца злаковыха",
+        "пыльца злаковыхе",
+        "пыльца злаковыху",
+        "пыльца злаковыхом",
+        "пыльца злаковыхы",
+        "Poaceae",
+        "Gramineae",
+        "Grass",
+        "Grasses",
+        "Imperata",
+        "Arundo",
+        "Alopecurus",
+        "Imperata cylindrica"
+      ],
+      "chips": [
+        "Poaceae",
+        "grass pollen",
+        "grasses"
+      ],
+      "query_base_en": "grass pollen",
+      "query_terms": [
+        "grass pollen",
+        "Poaceae allergy",
+        "grass pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "willow_pollen",
+      "type": "allergen",
+      "label": "Ива",
+      "standalone": true,
+      "aliases": [
+        "ива",
+        "ивы",
+        "ивой",
+        "иве",
+        "ивою",
+        "иву",
+        "ивыы",
+        "ивыом",
+        "ивые",
+        "ивыу",
+        "ивыа",
+        "ивуу",
+        "ивуа",
+        "ивуы",
+        "ивуом",
+        "ивуе",
+        "пыльца ивы",
+        "пыльца ивыы",
+        "пыльца ивыом",
+        "пыльца ивые",
+        "пыльца ивыу",
+        "пыльца ивыа"
+      ],
+      "chips": [
+        "Willow",
+        "Salix",
+        "willow pollen"
+      ],
+      "query_base_en": "willow pollen",
+      "query_terms": [
+        "willow pollen",
+        "Salix allergy",
+        "willow pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis"
+      ]
+    },
+    {
+      "id": "nettle_pollen",
+      "type": "allergen",
+      "label": "Крапива",
+      "standalone": true,
+      "aliases": [
+        "крапива",
+        "крапивою",
+        "крапивы",
+        "крапиве",
+        "крапиву",
+        "крапивой",
+        "крапивыа",
+        "крапивыы",
+        "крапивыом",
+        "крапивыу",
+        "крапивые",
+        "крапивуа",
+        "крапивуы",
+        "крапивуе",
+        "крапивуу",
+        "крапивуом",
+        "пыльца крапивы",
+        "пыльца крапивыа",
+        "пыльца крапивыы",
+        "пыльца крапивыом",
+        "пыльца крапивыу",
+        "пыльца крапивые"
+      ],
+      "chips": [
+        "Nettle",
+        "Urtica",
+        "nettle pollen"
+      ],
+      "query_base_en": "nettle pollen",
+      "query_terms": [
+        "nettle pollen",
+        "Urtica allergy",
+        "nettle pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis"
+      ]
+    },
+    {
+      "id": "goosefoot_pollen",
+      "type": "allergen",
+      "label": "Лебеда",
+      "standalone": true,
+      "aliases": [
+        "лебеда",
+        "лебеду",
+        "лебеды",
+        "лебедою",
+        "лебеде",
+        "лебедой",
+        "лебедыа",
+        "лебедыом",
+        "лебедыу",
+        "лебедыы",
+        "лебедые",
+        "лебедуы",
+        "лебедуу",
+        "лебедуом",
+        "лебедуе",
+        "лебедуа",
+        "пыльца лебеды",
+        "пыльца лебедыа",
+        "пыльца лебедыом",
+        "пыльца лебедыу",
+        "пыльца лебедыы",
+        "пыльца лебедые"
+      ],
+      "chips": [
+        "Goosefoot",
+        "Chenopodium",
+        "goosefoot pollen"
+      ],
+      "query_base_en": "goosefoot pollen",
+      "query_terms": [
+        "goosefoot pollen",
+        "Chenopodium allergy",
+        "goosefoot pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis"
+      ]
+    },
+    {
+      "id": "hazel_pollen",
+      "type": "allergen",
+      "label": "Лещина",
+      "standalone": true,
+      "aliases": [
+        "лещина",
+        "лещине",
+        "лещиною",
+        "лещину",
+        "лещины",
+        "лещиной",
+        "лещиные",
+        "лещиныом",
+        "лещиныу",
+        "лещиныа",
+        "лещиныы",
+        "лещинуы",
+        "лещинуу",
+        "лещинуа",
+        "лещинуе",
+        "лещинуом",
+        "орешник",
+        "орешнику",
+        "орешника",
+        "орешником",
+        "орешникы",
+        "орешнике",
+        "пыльца лещины",
+        "пыльца лещиные",
+        "пыльца лещиныом",
+        "пыльца лещиныу",
+        "пыльца лещиныа",
+        "пыльца лещиныы",
+        "пыльца орешника",
+        "пыльца орешнику",
+        "пыльца орешникой",
+        "пыльца орешникою",
+        "пыльца орешникы",
+        "пыльца орешнике"
+      ],
+      "chips": [
+        "Hazel",
+        "Corylus",
+        "hazel pollen"
+      ],
+      "query_base_en": "hazel pollen",
+      "query_terms": [
+        "hazel pollen",
+        "Corylus allergy",
+        "hazel pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "cross_reactivity",
+        "pollen_food_syndrome"
+      ]
+    },
+    {
+      "id": "alder_pollen",
+      "type": "allergen",
+      "label": "Ольха",
+      "standalone": true,
+      "aliases": [
+        "ольха",
+        "ольху",
+        "ольхою",
+        "ольхе",
+        "ольхы",
+        "ольхой",
+        "ольхи",
+        "ольхиу",
+        "ольхиы",
+        "ольхиа",
+        "ольхиом",
+        "ольхие",
+        "ольхуу",
+        "ольхуом",
+        "ольхуа",
+        "ольхуы",
+        "ольхуе",
+        "пыльца ольхи",
+        "пыльца ольхиу",
+        "пыльца ольхиы",
+        "пыльца ольхиа",
+        "пыльца ольхиом",
+        "пыльца ольхие"
+      ],
+      "chips": [
+        "Alder",
+        "Alnus",
+        "alder pollen"
+      ],
+      "query_base_en": "alder pollen",
+      "query_terms": [
+        "alder pollen",
+        "Alnus allergy",
+        "alder pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "mugwort_pollen",
+      "type": "allergen",
+      "label": "Полынь",
+      "standalone": true,
+      "aliases": [
+        "полынь",
+        "полыни",
+        "полыне",
+        "полынью",
+        "полыню",
+        "полыниа",
+        "полыниом",
+        "полыние",
+        "полыниы",
+        "полыниу",
+        "пыльца полыни",
+        "пыльца полыниа",
+        "пыльца полыниом",
+        "пыльца полыние",
+        "пыльца полыниы",
+        "пыльца полыниу"
+      ],
+      "chips": [
+        "Mugwort",
+        "Artemisia",
+        "mugwort pollen"
+      ],
+      "query_base_en": "mugwort pollen",
+      "query_terms": [
+        "mugwort pollen",
+        "Artemisia allergy",
+        "mugwort pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "poplar_pollen",
+      "type": "allergen",
+      "label": "Тополь",
+      "standalone": true,
+      "aliases": [
+        "тополь",
+        "тополи",
+        "тополью",
+        "тополе",
+        "тополю",
+        "тополя",
+        "тополею",
+        "тополей",
+        "тополюе",
+        "тополюу",
+        "тополюом",
+        "тополюа",
+        "тополюы",
+        "пыльца тополя",
+        "пыльца тополи",
+        "пыльца тополею",
+        "пыльца тополей",
+        "пыльца тополю",
+        "пыльца тополе"
+      ],
+      "chips": [
+        "Poplar",
+        "Populus",
+        "poplar pollen"
+      ],
+      "query_base_en": "poplar pollen",
+      "query_terms": [
+        "poplar pollen",
+        "Populus allergy",
+        "poplar pollen allergy"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "allergic_rhinitis"
+      ]
+    },
+    {
+      "id": "allergic_rhinitis",
+      "type": "condition",
+      "label": "Аллергический ринит",
+      "standalone": true,
+      "aliases": [
+        "аллергический ринит",
+        "аллергический ринитом",
+        "аллергический ринита",
+        "аллергический рините",
+        "аллергический риниту",
+        "аллергический риниты",
+        "ринит",
+        "ринитом",
+        "ринита",
+        "рините",
+        "риниту",
+        "риниты",
+        "поллиноз",
+        "поллиноза",
+        "поллинозы",
+        "поллинозе",
+        "поллинозом",
+        "поллинозу",
+        "сенная лихорадка",
+        "сенная лихорадкой",
+        "сенная лихорадкы",
+        "сенная лихорадкою",
+        "сенная лихорадке",
+        "сенная лихорадку",
+        "allergic rhinitis",
+        "atopic rhinitis",
+        "hay fever",
+        "Non-seasonal allergic rhinitis",
+        "Perenial allergic rhinitis",
+        "pollenosis",
+        "seasonal allergic rhinitis",
+        "pollen allergy"
+      ],
+      "chips": [
+        "allergic rhinitis",
+        "hay fever",
+        "pollinosis"
+      ],
+      "query_base_en": "allergic rhinitis",
+      "query_terms": [
+        "allergic rhinitis",
+        "hay fever",
+        "pollinosis"
+      ],
+      "related": [
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "allergy",
+      "type": "condition",
+      "label": "Аллергия",
+      "standalone": true,
+      "aliases": [
+        "аллергия",
+        "аллергией",
+        "аллергию",
+        "аллергии",
+        "аллергииом",
+        "аллергииа",
+        "аллергиие",
+        "аллергииы",
+        "аллергииу",
+        "аллергический",
+        "аллергическем",
+        "аллергическему",
+        "аллергическее",
+        "аллергическую",
+        "аллергическего",
+        "аллергическим",
+        "аллергическая",
+        "аллергические",
+        "аллергическаей",
+        "аллергическаю",
+        "аллергическаею",
+        "аллергическае",
+        "аллергическаи",
+        "гиперчувствительность",
+        "гиперчувствительности",
+        "гиперчувствительносте",
+        "гиперчувствительностью",
+        "гиперчувствительностю",
+        "Hypersensitivity",
+        "Hypersensitivities",
+        "Allergy",
+        "Allergies",
+        "Allergic Reaction",
+        "Allergic Reactions",
+        "Reaction, Allergic",
+        "Reactions, Allergic",
+        "Hypersensitivity, Immediate",
+        "Hypersensitivities, Immediate",
+        "Immediate Hypersensitivities",
+        "Immediate Hypersensitivity",
+        "Atopic Hypersensitivity",
+        "Atopic Hypersensitivities",
+        "Hypersensitivities, Atopic",
+        "Hypersensitivity, Atopic",
+        "Hypersensitivity, Type I",
+        "Hypersensitivities, Type I",
+        "Type I Hypersensitivities",
+        "Type I Hypersensitivity",
+        "IgE-Mediated Hypersensitivity",
+        "Hypersensitivities, IgE-Mediated",
+        "Hypersensitivity, IgE-Mediated",
+        "IgE-Mediated Hypersensitivities",
+        "IgE Mediated Hypersensitivity",
+        "pollen allergy"
+      ],
+      "chips": [
+        "allergy",
+        "hypersensitivity",
+        "allergic disease"
+      ],
+      "query_base_en": "allergy",
+      "query_terms": [
+        "allergy",
+        "allergic disease",
+        "hypersensitivity"
+      ],
+      "related": [
+        "pollen",
+        "allergic_rhinitis",
+        "immunotherapy"
+      ]
+    },
+    {
+      "id": "asthma",
+      "type": "condition",
+      "label": "Астма",
+      "standalone": true,
+      "aliases": [
+        "астма",
+        "астму",
+        "астмою",
+        "астмой",
+        "астмы",
+        "астме",
+        "бронхиальная астма",
+        "бронхиальная астму",
+        "бронхиальная астмою",
+        "бронхиальная астмой",
+        "бронхиальная астмы",
+        "бронхиальная астме",
+        "Asthma",
+        "Asthmas",
+        "Asthma, Bronchial",
+        "Bronchial Asthma",
+        "bronchial hyperreactivity",
+        "chronic obstructive asthma",
+        "chronic obstructive asthma with acute exacerbation",
+        "chronic obstructive asthma with status asthmaticus"
+      ],
+      "chips": [
+        "asthma",
+        "bronchial asthma"
+      ],
+      "query_base_en": "asthma",
+      "query_terms": [
+        "asthma",
+        "bronchial asthma"
+      ],
+      "related": [
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "atopic_dermatitis",
+      "type": "condition",
+      "label": "Атопический дерматит",
+      "standalone": true,
+      "aliases": [
+        "атопический дерматит",
+        "атопический дерматитом",
+        "атопический дерматиты",
+        "атопический дерматите",
+        "атопический дерматита",
+        "атопический дерматиту",
+        "дерматит",
+        "дерматитом",
+        "дерматиты",
+        "дерматите",
+        "дерматита",
+        "дерматиту",
+        "атопическая экзема",
+        "атопическая экземе",
+        "атопическая экземой",
+        "атопическая экзему",
+        "атопическая экземою",
+        "атопическая экземы",
+        "экзема",
+        "экземе",
+        "экземой",
+        "экзему",
+        "экземою",
+        "экземы",
+        "Dermatitis, Atopic",
+        "Atopic Dermatitis",
+        "Eczema, Atopic",
+        "Atopic Eczema",
+        "Neurodermatitis, Atopic",
+        "Atopic Neurodermatitis",
+        "Neurodermatitis, Disseminated",
+        "Disseminated Neurodermatitis",
+        "Eczema, Infantile",
+        "Infantile Eczema",
+        "dermatitis",
+        "eczema",
+        "skin inflammation"
+      ],
+      "chips": [
+        "atopic dermatitis",
+        "eczema"
+      ],
+      "query_base_en": "atopic dermatitis",
+      "query_terms": [
+        "atopic dermatitis",
+        "eczema"
+      ],
+      "related": [
+        "allergy"
+      ]
+    },
+    {
+      "id": "spring_pollinosis",
+      "type": "condition",
+      "label": "Весенний поллиноз",
+      "standalone": true,
+      "aliases": [
+        "весенний поллиноз",
+        "весенний поллиноза",
+        "весенний поллинозы",
+        "весенний поллинозе",
+        "весенний поллинозом",
+        "весенний поллинозу",
+        "весенняя аллергия на пыльцу",
+        "весенняя аллергия на пыльцуу",
+        "весенняя аллергия на пыльцуом",
+        "весенняя аллергия на пыльцуа",
+        "весенняя аллергия на пыльцуы",
+        "весенняя аллергия на пыльцуе",
+        "весенний сезон пыльцы",
+        "весенний сезон пыльцыом",
+        "весенний сезон пыльцыа",
+        "весенний сезон пыльцыу",
+        "весенний сезон пыльцые",
+        "весенний сезон пыльцыы"
+      ],
+      "chips": [
+        "spring pollinosis",
+        "spring pollen allergy"
+      ],
+      "query_base_en": "spring pollen allergy",
+      "query_terms": [
+        "spring pollinosis",
+        "spring pollen allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen_season",
+        "birch_pollen",
+        "alder_pollen",
+        "hazel_pollen"
+      ]
+    },
+    {
+      "id": "conjunctivitis",
+      "type": "condition",
+      "label": "Конъюнктивит",
+      "standalone": true,
+      "aliases": [
+        "конъюнктивит",
+        "конъюнктивите",
+        "конъюнктивиты",
+        "конъюнктивитом",
+        "конъюнктивиту",
+        "конъюнктивита",
+        "аллергический конъюнктивит",
+        "аллергический конъюнктивите",
+        "аллергический конъюнктивиты",
+        "аллергический конъюнктивитом",
+        "аллергический конъюнктивиту",
+        "аллергический конъюнктивита",
+        "Conjunctivitis",
+        "Conjunctivitides",
+        "Pink Eye",
+        "Pink Eyes",
+        "Madras eye"
+      ],
+      "chips": [
+        "conjunctivitis",
+        "allergic conjunctivitis"
+      ],
+      "query_base_en": "conjunctivitis",
+      "query_terms": [
+        "conjunctivitis",
+        "allergic conjunctivitis"
+      ],
+      "related": [
+        "allergy"
+      ]
+    },
+    {
+      "id": "summer_pollinosis",
+      "type": "condition",
+      "label": "Летний поллиноз",
+      "standalone": true,
+      "aliases": [
+        "летний поллиноз",
+        "летний поллиноза",
+        "летний поллинозы",
+        "летний поллинозе",
+        "летний поллинозом",
+        "летний поллинозу",
+        "летняя аллергия на пыльцу",
+        "летняя аллергия на пыльцуу",
+        "летняя аллергия на пыльцуом",
+        "летняя аллергия на пыльцуа",
+        "летняя аллергия на пыльцуы",
+        "летняя аллергия на пыльцуе",
+        "летний сезон пыльцы",
+        "летний сезон пыльцыом",
+        "летний сезон пыльцыа",
+        "летний сезон пыльцыу",
+        "летний сезон пыльцые",
+        "летний сезон пыльцыы"
+      ],
+      "chips": [
+        "summer pollinosis",
+        "summer pollen allergy"
+      ],
+      "query_base_en": "summer pollen allergy",
+      "query_terms": [
+        "summer pollinosis",
+        "summer pollen allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen_season",
+        "grass_pollen",
+        "mugwort_pollen"
+      ]
+    },
+    {
+      "id": "autumn_pollinosis",
+      "type": "condition",
+      "label": "Осенний поллиноз",
+      "standalone": true,
+      "aliases": [
+        "осенний поллиноз",
+        "осенний поллиноза",
+        "осенний поллинозы",
+        "осенний поллинозе",
+        "осенний поллинозом",
+        "осенний поллинозу",
+        "осенняя аллергия на пыльцу",
+        "осенняя аллергия на пыльцуу",
+        "осенняя аллергия на пыльцуом",
+        "осенняя аллергия на пыльцуа",
+        "осенняя аллергия на пыльцуы",
+        "осенняя аллергия на пыльцуе",
+        "осенний сезон пыльцы",
+        "осенний сезон пыльцыом",
+        "осенний сезон пыльцыа",
+        "осенний сезон пыльцыу",
+        "осенний сезон пыльцые",
+        "осенний сезон пыльцыы"
+      ],
+      "chips": [
+        "autumn pollinosis",
+        "autumn pollen allergy"
+      ],
+      "query_base_en": "autumn pollen allergy",
+      "query_terms": [
+        "autumn pollinosis",
+        "autumn pollen allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen_season",
+        "ragweed_pollen",
+        "mugwort_pollen"
+      ]
+    },
+    {
+      "id": "pollen_food_syndrome",
+      "type": "condition",
+      "label": "Пыльцево-пищевой синдром",
+      "standalone": true,
+      "aliases": [
+        "пыльцево-пищевой синдром",
+        "пыльцево-пищевой синдрому",
+        "пыльцево-пищевой синдромы",
+        "пыльцево-пищевой синдромом",
+        "пыльцево-пищевой синдрома",
+        "пыльцево-пищевой синдроме",
+        "оральный аллергический синдром",
+        "оральный аллергический синдрому",
+        "оральный аллергический синдромы",
+        "оральный аллергический синдромом",
+        "оральный аллергический синдрома",
+        "оральный аллергический синдроме",
+        "pollen-food syndrome",
+        "oral allergy syndrome"
+      ],
+      "chips": [
+        "pollen-food syndrome",
+        "oral allergy syndrome"
+      ],
+      "query_base_en": "pollen-food syndrome",
+      "query_terms": [
+        "pollen-food syndrome",
+        "oral allergy syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "allergy",
+        "birch_pollen"
+      ]
+    },
+    {
+      "id": "rhinoconjunctivitis",
+      "type": "condition",
+      "label": "Риноконъюнктивит",
+      "standalone": true,
+      "aliases": [
+        "риноконъюнктивит",
+        "риноконъюнктивита",
+        "риноконъюнктивиту",
+        "риноконъюнктивите",
+        "риноконъюнктивитом",
+        "риноконъюнктивиты",
+        "аллергический риноконъюнктивит",
+        "аллергический риноконъюнктивита",
+        "аллергический риноконъюнктивиту",
+        "аллергический риноконъюнктивите",
+        "аллергический риноконъюнктивитом",
+        "аллергический риноконъюнктивиты"
+      ],
+      "chips": [
+        "rhinoconjunctivitis",
+        "allergic rhinoconjunctivitis"
+      ],
+      "query_base_en": "rhinoconjunctivitis",
+      "query_terms": [
+        "rhinoconjunctivitis",
+        "allergic rhinoconjunctivitis"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "conjunctivitis",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "diagnosis",
+      "type": "diagnostic",
+      "label": "Диагностика",
+      "standalone": true,
+      "aliases": [
+        "диагностика",
+        "диагностике",
+        "диагностику",
+        "диагностикой",
+        "диагностикы",
+        "диагностикою",
+        "диагноз",
+        "диагнозы",
+        "диагнозом",
+        "диагнозу",
+        "диагнозе",
+        "диагноза",
+        "обследование",
+        "обследованиеы",
+        "обследованиеом",
+        "обследованиеа",
+        "обследованиеу",
+        "обследованиее",
+        "тестирование",
+        "тестированиеа",
+        "тестированиее",
+        "тестированиеу",
+        "тестированиеы",
+        "тестированиеом",
+        "Diagnosis",
+        "Diagnoses",
+        "Diagnose",
+        "Diagnoses and Examinations",
+        "Diagnoses and Examination",
+        "Examination and Diagnoses",
+        "Examinations and Diagnoses",
+        "Antemortem Diagnosis",
+        "Antemortem Diagnoses",
+        "Diagnoses, Antemortem",
+        "Diagnosis, Antemortem",
+        "Postmortem Diagnosis",
+        "Diagnoses, Postmortem",
+        "Diagnosis, Postmortem",
+        "Postmortem Diagnoses"
+      ],
+      "chips": [
+        "diagnosis",
+        "diagnostic testing",
+        "allergy testing"
+      ],
+      "query_base_en": "allergy diagnosis",
+      "query_terms": [
+        "allergy diagnosis",
+        "diagnostic testing",
+        "allergy testing"
+      ],
+      "related": [
+        "skin_prick_test",
+        "specific_ige",
+        "sensitization",
+        "allergy"
+      ]
+    },
+    {
+      "id": "skin_prick_test",
+      "type": "diagnostic",
+      "label": "Кожные пробы",
+      "standalone": true,
+      "aliases": [
+        "кожные пробы",
+        "кожные пробыом",
+        "кожные пробые",
+        "кожные пробыу",
+        "кожные пробыы",
+        "кожные пробыа",
+        "прик-тест",
+        "прик-теста",
+        "прик-тесту",
+        "прик-тесты",
+        "прик-тесте",
+        "прик-тестом",
+        "прик тест",
+        "прик теста",
+        "прик тесту",
+        "прик тесты",
+        "прик тесте",
+        "прик тестом",
+        "кожный тест",
+        "кожный теста",
+        "кожный тесту",
+        "кожный тесты",
+        "кожный тесте",
+        "кожный тестом",
+        "skin prick test"
+      ],
+      "chips": [
+        "skin prick test",
+        "prick test"
+      ],
+      "query_base_en": "skin prick test",
+      "query_terms": [
+        "skin prick test",
+        "prick test allergy"
+      ],
+      "related": [
+        "diagnosis",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "component_resolved_diagnostics",
+      "type": "diagnostic",
+      "label": "Компонентная диагностика",
+      "standalone": true,
+      "aliases": [
+        "компонентная диагностика",
+        "компонентная диагностике",
+        "компонентная диагностику",
+        "компонентная диагностикой",
+        "компонентная диагностикы",
+        "компонентная диагностикою",
+        "молекулярная диагностика",
+        "молекулярная диагностике",
+        "молекулярная диагностику",
+        "молекулярная диагностикой",
+        "молекулярная диагностикы",
+        "молекулярная диагностикою",
+        "component-resolved diagnostics",
+        "crd"
+      ],
+      "chips": [
+        "component-resolved diagnostics",
+        "molecular allergy diagnostics",
+        "CRD"
+      ],
+      "query_base_en": "component-resolved diagnostics",
+      "query_terms": [
+        "component-resolved diagnostics",
+        "molecular allergy diagnostics"
+      ],
+      "related": [
+        "diagnosis",
+        "specific_ige",
+        "sensitization",
+        "allergy"
+      ]
+    },
+    {
+      "id": "provocation_test",
+      "type": "diagnostic",
+      "label": "Провокационный тест",
+      "standalone": true,
+      "aliases": [
+        "провокационный тест",
+        "провокационный теста",
+        "провокационный тесту",
+        "провокационный тесты",
+        "провокационный тесте",
+        "провокационный тестом",
+        "назальный провокационный тест",
+        "назальный провокационный теста",
+        "назальный провокационный тесту",
+        "назальный провокационный тесты",
+        "назальный провокационный тесте",
+        "назальный провокационный тестом",
+        "provocation test",
+        "nasal provocation test"
+      ],
+      "chips": [
+        "provocation test",
+        "nasal provocation test"
+      ],
+      "query_base_en": "provocation test",
+      "query_terms": [
+        "nasal provocation test",
+        "provocation test allergy"
+      ],
+      "related": [
+        "diagnosis",
+        "allergic_rhinitis",
+        "allergy"
+      ]
+    },
+    {
+      "id": "sensitization",
+      "type": "diagnostic",
+      "label": "Сенсибилизация",
+      "standalone": true,
+      "aliases": [
+        "сенсибилизация",
+        "сенсибилизацией",
+        "сенсибилизацию",
+        "сенсибилизации",
+        "аллергическая сенсибилизация",
+        "аллергическая сенсибилизацией",
+        "аллергическая сенсибилизацию",
+        "аллергическая сенсибилизации",
+        "sensitization"
+      ],
+      "chips": [
+        "sensitization",
+        "allergic sensitization"
+      ],
+      "query_base_en": "sensitization",
+      "query_terms": [
+        "allergic sensitization",
+        "pollen sensitization"
+      ],
+      "related": [
+        "diagnosis",
+        "specific_ige",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "specific_ige",
+      "type": "diagnostic",
+      "label": "Специфический IgE",
+      "standalone": true,
+      "aliases": [
+        "специфический ige",
+        "ige",
+        "иммуноглобулин e",
+        "specific ige"
+      ],
+      "chips": [
+        "specific IgE",
+        "IgE",
+        "serum IgE"
+      ],
+      "query_base_en": "specific IgE",
+      "query_terms": [
+        "specific IgE",
+        "serum IgE allergy"
+      ],
+      "related": [
+        "diagnosis",
+        "sensitization",
+        "allergy"
+      ]
+    },
+    {
+      "id": "avoidance",
+      "type": "management",
+      "label": "Профилактика",
+      "standalone": true,
+      "aliases": [
+        "профилактика",
+        "профилактикы",
+        "профилактике",
+        "профилактику",
+        "профилактикой",
+        "профилактикою",
+        "избегание аллергена",
+        "избегание аллергены",
+        "избегание аллергеною",
+        "избегание аллергеной",
+        "избегание аллергене",
+        "избегание аллергену",
+        "снижение контакта",
+        "снижение контакты",
+        "снижение контактой",
+        "снижение контакту",
+        "снижение контактою",
+        "снижение контакте",
+        "контроль экспозиции",
+        "контроль экспозицииу",
+        "контроль экспозицииа",
+        "контроль экспозицииы",
+        "контроль экспозицииом",
+        "контроль экспозициие"
+      ],
+      "chips": [
+        "allergen avoidance",
+        "exposure reduction"
+      ],
+      "query_base_en": "allergen avoidance",
+      "query_terms": [
+        "allergen avoidance",
+        "pollen exposure reduction"
+      ],
+      "related": [
+        "allergy",
+        "pollen",
+        "pollen_forecast"
+      ]
+    },
+    {
+      "id": "cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реактивность",
+      "standalone": true,
+      "aliases": [
+        "перекрестная реактивность",
+        "перекрестная реактивностью",
+        "перекрестная реактивносте",
+        "перекрестная реактивности",
+        "перекрестная реактивностю",
+        "перекрестная реакция",
+        "перекрестная реакцию",
+        "перекрестная реакции",
+        "перекрестная реакцией",
+        "кросс-реактивность",
+        "кросс-реактивносте",
+        "кросс-реактивностью",
+        "кросс-реактивности",
+        "кросс-реактивностю",
+        "cross-reactivity"
+      ],
+      "chips": [
+        "cross-reactivity",
+        "cross reactivity"
+      ],
+      "query_base_en": "cross-reactivity",
+      "query_terms": [
+        "cross-reactivity pollen allergy",
+        "pollen cross reactivity"
+      ],
+      "related": [
+        "allergy",
+        "pollen",
+        "pollen_food_syndrome"
+      ]
+    },
+    {
+      "id": "banana_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с бананом",
+      "standalone": true,
+      "aliases": [
+        "банан",
+        "банану",
+        "бананом",
+        "бананы",
+        "банане",
+        "банана",
+        "реакция на банан",
+        "реакция на банану",
+        "реакция на бананом",
+        "реакция на бананы",
+        "реакция на банане",
+        "реакция на банана",
+        "банан и амброзия",
+        "банан и амброзию",
+        "банан и амброзией",
+        "банан и амброзии"
+      ],
+      "chips": [
+        "banana cross-reactivity",
+        "banana ragweed allergy"
+      ],
+      "query_base_en": "banana ragweed cross-reactivity",
+      "query_terms": [
+        "banana ragweed cross-reactivity",
+        "banana pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "ragweed_pollen"
+      ]
+    },
+    {
+      "id": "melon_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с дыней",
+      "standalone": true,
+      "aliases": [
+        "дыня",
+        "дыне",
+        "дынею",
+        "дыни",
+        "дыню",
+        "дыней",
+        "реакция на дыню",
+        "реакция на дынюом",
+        "реакция на дынюе",
+        "реакция на дынюы",
+        "реакция на дынюа",
+        "реакция на дынюу",
+        "дыня и амброзия",
+        "дыня и амброзию",
+        "дыня и амброзией",
+        "дыня и амброзии"
+      ],
+      "chips": [
+        "melon cross-reactivity",
+        "melon ragweed allergy"
+      ],
+      "query_base_en": "melon ragweed cross-reactivity",
+      "query_terms": [
+        "melon ragweed cross-reactivity",
+        "melon pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "ragweed_pollen"
+      ]
+    },
+    {
+      "id": "carrot_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с морковью",
+      "standalone": true,
+      "aliases": [
+        "морковь",
+        "моркови",
+        "моркове",
+        "морковю",
+        "морковью",
+        "реакция на морковь",
+        "реакция на моркови",
+        "реакция на моркове",
+        "реакция на морковю",
+        "реакция на морковью",
+        "морковь и береза",
+        "морковь и березы",
+        "морковь и березе",
+        "морковь и березой",
+        "морковь и березу",
+        "морковь и березою"
+      ],
+      "chips": [
+        "carrot cross-reactivity",
+        "carrot birch allergy"
+      ],
+      "query_base_en": "carrot birch cross-reactivity",
+      "query_terms": [
+        "carrot birch cross-reactivity",
+        "carrot pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "birch_pollen"
+      ]
+    },
+    {
+      "id": "celery_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с сельдереем",
+      "standalone": true,
+      "aliases": [
+        "сельдерей",
+        "сельдерейу",
+        "сельдерейа",
+        "сельдерейы",
+        "сельдерейе",
+        "сельдерейом",
+        "реакция на сельдерей",
+        "реакция на сельдерейу",
+        "реакция на сельдерейа",
+        "реакция на сельдерейы",
+        "реакция на сельдерейе",
+        "реакция на сельдерейом",
+        "сельдерей и полынь",
+        "сельдерей и полыни",
+        "сельдерей и полыне",
+        "сельдерей и полынью",
+        "сельдерей и полыню"
+      ],
+      "chips": [
+        "celery cross-reactivity",
+        "celery mugwort allergy"
+      ],
+      "query_base_en": "celery mugwort cross-reactivity",
+      "query_terms": [
+        "celery mugwort cross-reactivity",
+        "celery pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "mugwort_pollen"
+      ]
+    },
+    {
+      "id": "hazelnut_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с фундуком",
+      "standalone": true,
+      "aliases": [
+        "фундук",
+        "фундуком",
+        "фундуке",
+        "фундука",
+        "фундукы",
+        "фундуку",
+        "реакция на фундук",
+        "реакция на фундуком",
+        "реакция на фундуке",
+        "реакция на фундука",
+        "реакция на фундукы",
+        "реакция на фундуку",
+        "фундук и береза",
+        "фундук и березы",
+        "фундук и березе",
+        "фундук и березой",
+        "фундук и березу",
+        "фундук и березою"
+      ],
+      "chips": [
+        "hazelnut cross-reactivity",
+        "hazelnut birch allergy"
+      ],
+      "query_base_en": "hazelnut birch cross-reactivity",
+      "query_terms": [
+        "hazelnut birch cross-reactivity",
+        "hazelnut pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "birch_pollen",
+        "hazel_pollen"
+      ]
+    },
+    {
+      "id": "apple_cross_reactivity",
+      "type": "mechanism",
+      "label": "Перекрестная реакция с яблоком",
+      "standalone": true,
+      "aliases": [
+        "яблоко",
+        "яблокое",
+        "яблокоом",
+        "яблокоу",
+        "яблокоы",
+        "яблокоа",
+        "яблока",
+        "яблоке",
+        "яблоку",
+        "яблокы",
+        "яблокою",
+        "яблокой",
+        "яблокуу",
+        "яблокуом",
+        "яблокуы",
+        "яблокуе",
+        "яблокуа",
+        "реакция на яблоко",
+        "реакция на яблокое",
+        "реакция на яблокоом",
+        "реакция на яблокоу",
+        "реакция на яблокоы",
+        "реакция на яблокоа",
+        "аллергия на яблоко при березе",
+        "яблоко и береза",
+        "яблоко и березы",
+        "яблоко и березе",
+        "яблоко и березой",
+        "яблоко и березу",
+        "яблоко и березою"
+      ],
+      "chips": [
+        "apple cross-reactivity",
+        "apple birch allergy"
+      ],
+      "query_base_en": "apple birch cross-reactivity",
+      "query_terms": [
+        "apple birch cross-reactivity",
+        "apple pollen-food syndrome"
+      ],
+      "related": [
+        "cross_reactivity",
+        "pollen_food_syndrome",
+        "birch_pollen"
+      ]
+    },
+    {
+      "id": "pollen_forecast",
+      "type": "monitoring",
+      "label": "Пыльцевой прогноз",
+      "standalone": true,
+      "aliases": [
+        "пыльцевой прогноз",
+        "пыльцевой прогноза",
+        "пыльцевой прогнозы",
+        "пыльцевой прогнозом",
+        "пыльцевой прогнозе",
+        "пыльцевой прогнозу",
+        "прогноз пыльцы",
+        "прогноз пыльцыом",
+        "прогноз пыльцыа",
+        "прогноз пыльцыу",
+        "прогноз пыльцые",
+        "прогноз пыльцыы",
+        "уровень пыльцы",
+        "уровень пыльцыом",
+        "уровень пыльцыа",
+        "уровень пыльцыу",
+        "уровень пыльцые",
+        "уровень пыльцыы",
+        "пыльцевой мониторинг",
+        "пыльцевой мониторингы",
+        "пыльцевой мониторингу",
+        "пыльцевой мониторинга",
+        "пыльцевой мониторинге",
+        "пыльцевой мониторингом",
+        "аэробиология",
+        "аэробиологией",
+        "аэробиологию",
+        "аэробиологии"
+      ],
+      "chips": [
+        "pollen forecast",
+        "pollen monitoring",
+        "aerobiology"
+      ],
+      "query_base_en": "pollen forecast",
+      "query_terms": [
+        "pollen forecast",
+        "pollen monitoring",
+        "aerobiology pollen"
+      ],
+      "related": [
+        "pollen",
+        "allergy",
+        "avoidance"
+      ]
+    },
+    {
+      "id": "pollen_season",
+      "type": "monitoring",
+      "label": "Сезон пыльцы",
+      "standalone": true,
+      "aliases": [
+        "сезон пыльцы",
+        "сезон пыльцыом",
+        "сезон пыльцыа",
+        "сезон пыльцыу",
+        "сезон пыльцые",
+        "сезон пыльцыы",
+        "пыльцевой сезон",
+        "пыльцевой сезону",
+        "пыльцевой сезона",
+        "пыльцевой сезоне",
+        "пыльцевой сезоном",
+        "пыльцевой сезоны",
+        "сезон поллиноза",
+        "сезон поллинозой",
+        "сезон поллинозы",
+        "сезон поллинозе",
+        "сезон поллинозу",
+        "сезон поллинозою",
+        "цветение",
+        "цветениеу",
+        "цветениеом",
+        "цветениее",
+        "цветениеа",
+        "цветениеы"
+      ],
+      "chips": [
+        "pollen season",
+        "flowering season"
+      ],
+      "query_base_en": "pollen season",
+      "query_terms": [
+        "pollen season",
+        "flowering season allergy"
+      ],
+      "related": [
+        "pollen_forecast",
+        "pollen",
+        "allergy"
+      ]
+    },
+    {
+      "id": "adult",
+      "type": "population",
+      "label": "Взрослые",
+      "standalone": false,
+      "aliases": [
+        "взрослые",
+        "взрослыеы",
+        "взрослыее",
+        "взрослыеом",
+        "взрослыеа",
+        "взрослыеу",
+        "взрослый",
+        "взрослое",
+        "взрослом",
+        "взрослого",
+        "взрослому",
+        "взрослая",
+        "взрослым",
+        "взрослую",
+        "adult"
+      ],
+      "chips": [
+        "adult",
+        "adults"
+      ],
+      "query_base_en": "adult",
+      "query_terms": [
+        "adult",
+        "adults"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "asthma"
+      ]
+    },
+    {
+      "id": "child",
+      "type": "population",
+      "label": "Дети",
+      "standalone": false,
+      "aliases": [
+        "дети",
+        "детиу",
+        "детиы",
+        "детие",
+        "детиа",
+        "детиом",
+        "детей",
+        "детейу",
+        "детейом",
+        "детейа",
+        "детейы",
+        "детейе",
+        "ребенок",
+        "ребенока",
+        "ребенокы",
+        "ребеноку",
+        "ребеноком",
+        "ребеноке",
+        "детский",
+        "детскую",
+        "детскее",
+        "детские",
+        "детская",
+        "детскего",
+        "детскему",
+        "детскем",
+        "детским",
+        "педиатрический",
+        "педиатрические",
+        "педиатрическую",
+        "педиатрическая",
+        "педиатрическего",
+        "педиатрическем",
+        "педиатрическему",
+        "педиатрическее",
+        "педиатрическим",
+        "Child",
+        "Children"
+      ],
+      "chips": [
+        "children",
+        "pediatric"
+      ],
+      "query_base_en": "children",
+      "query_terms": [
+        "children",
+        "pediatric"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "asthma",
+        "atopic_dermatitis"
+      ]
+    },
+    {
+      "id": "adolescent",
+      "type": "population",
+      "label": "Подростки",
+      "standalone": false,
+      "aliases": [
+        "подростки",
+        "подросткиа",
+        "подросткиу",
+        "подросткиом",
+        "подросткиы",
+        "подросткие",
+        "подросток",
+        "подростокы",
+        "подростоке",
+        "подростока",
+        "подростоком",
+        "подростоку",
+        "подростков",
+        "подростковом",
+        "подростковы",
+        "подросткову",
+        "подросткове",
+        "подросткова",
+        "подростку",
+        "подросткуа",
+        "подросткуе",
+        "подросткуу",
+        "подросткуом",
+        "подросткуы",
+        "adolescent",
+        "teenager"
+      ],
+      "chips": [
+        "adolescent",
+        "teenager"
+      ],
+      "query_base_en": "adolescent",
+      "query_terms": [
+        "adolescent",
+        "teenager"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "asthma"
+      ]
+    },
+    {
+      "id": "nasal_congestion",
+      "type": "symptom",
+      "label": "Заложенность носа",
+      "standalone": true,
+      "aliases": [
+        "заложенность носа",
+        "заложенность носе",
+        "заложенность носой",
+        "заложенность носою",
+        "заложенность носы",
+        "заложенность носу",
+        "заложен нос",
+        "заложен носе",
+        "заложен носом",
+        "заложен носа",
+        "заложен носы",
+        "заложен носу",
+        "назальная обструкция",
+        "назальная обструкцией",
+        "назальная обструкции",
+        "назальная обструкцию",
+        "носовая обструкция",
+        "носовая обструкцией",
+        "носовая обструкции",
+        "носовая обструкцию"
+      ],
+      "chips": [
+        "nasal congestion",
+        "nasal obstruction"
+      ],
+      "query_base_en": "nasal congestion",
+      "query_terms": [
+        "nasal congestion",
+        "nasal obstruction allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen",
+        "allergy"
+      ]
+    },
+    {
+      "id": "itchy_nose",
+      "type": "symptom",
+      "label": "Зуд в носу",
+      "standalone": true,
+      "aliases": [
+        "зуд в носу",
+        "зуд в носуом",
+        "зуд в носуе",
+        "зуд в носуа",
+        "зуд в носуы",
+        "зуд в носуу",
+        "нос чешется",
+        "нос чешетси",
+        "нос чешетсею",
+        "нос чешетсю",
+        "нос чешетсей",
+        "нос чешетсе",
+        "чешется нос",
+        "чешется носе",
+        "чешется носом",
+        "чешется носа",
+        "чешется носы",
+        "чешется носу"
+      ],
+      "chips": [
+        "itchy nose",
+        "nasal itching"
+      ],
+      "query_base_en": "itchy nose",
+      "query_terms": [
+        "itchy nose allergy",
+        "nasal itching pollen"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "itchy_eyes",
+      "type": "symptom",
+      "label": "Зуд глаз",
+      "standalone": true,
+      "aliases": [
+        "зуд глаз",
+        "зуд глазы",
+        "зуд глазом",
+        "зуд глаза",
+        "зуд глазе",
+        "зуд глазу",
+        "чешутся глаза",
+        "чешутся глазой",
+        "чешутся глазы",
+        "чешутся глазою",
+        "чешутся глазу",
+        "чешутся глазе",
+        "глаза чешутся",
+        "глаза чешутси",
+        "глаза чешутсей",
+        "глаза чешутсе",
+        "глаза чешутсею",
+        "глаза чешутсю",
+        "зуд в глазах",
+        "зуд в глазахы",
+        "зуд в глазаху",
+        "зуд в глазахе",
+        "зуд в глазаха",
+        "зуд в глазахом"
+      ],
+      "chips": [
+        "itchy eyes",
+        "ocular itching"
+      ],
+      "query_base_en": "itchy eyes",
+      "query_terms": [
+        "itchy eyes allergy",
+        "ocular itching pollen"
+      ],
+      "related": [
+        "conjunctivitis",
+        "rhinoconjunctivitis",
+        "pollen",
+        "allergy"
+      ]
+    },
+    {
+      "id": "cough",
+      "type": "symptom",
+      "label": "Кашель",
+      "standalone": true,
+      "aliases": [
+        "кашель",
+        "кашелю",
+        "кашеле",
+        "кашелью",
+        "кашели",
+        "кашляет",
+        "кашляеты",
+        "кашляету",
+        "кашляетом",
+        "кашляете",
+        "кашляета",
+        "покашливание",
+        "покашливаниеу",
+        "покашливаниеа",
+        "покашливаниеы",
+        "покашливаниее",
+        "покашливаниеом"
+      ],
+      "chips": [
+        "cough",
+        "allergic cough"
+      ],
+      "query_base_en": "cough",
+      "query_terms": [
+        "allergic cough",
+        "pollen cough"
+      ],
+      "related": [
+        "asthma",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "rhinorrhea",
+      "type": "symptom",
+      "label": "Насморк",
+      "standalone": true,
+      "aliases": [
+        "насморк",
+        "насморка",
+        "насморкы",
+        "насморку",
+        "насморком",
+        "насморке",
+        "ринорея",
+        "ринореею",
+        "ринореей",
+        "ринорее",
+        "ринорею",
+        "ринореи",
+        "течет нос",
+        "течет носе",
+        "течет носом",
+        "течет носа",
+        "течет носы",
+        "течет носу",
+        "выделения из носа",
+        "выделения из носе",
+        "выделения из носой",
+        "выделения из носою",
+        "выделения из носы",
+        "выделения из носу"
+      ],
+      "chips": [
+        "rhinorrhea",
+        "runny nose"
+      ],
+      "query_base_en": "rhinorrhea",
+      "query_terms": [
+        "rhinorrhea",
+        "runny nose allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen",
+        "allergy"
+      ]
+    },
+    {
+      "id": "dyspnea",
+      "type": "symptom",
+      "label": "Одышка",
+      "standalone": true,
+      "aliases": [
+        "одышка",
+        "одышкой",
+        "одышкою",
+        "одышку",
+        "одышкы",
+        "одышке",
+        "тяжело дышать",
+        "тяжело дышати",
+        "тяжело дышате",
+        "тяжело дышатю",
+        "тяжело дышатью",
+        "затрудненное дыхание",
+        "затрудненное дыханиеу",
+        "затрудненное дыханиеом",
+        "затрудненное дыханиее",
+        "затрудненное дыханиеа",
+        "затрудненное дыханиеы"
+      ],
+      "chips": [
+        "dyspnea",
+        "shortness of breath"
+      ],
+      "query_base_en": "dyspnea",
+      "query_terms": [
+        "dyspnea allergy",
+        "shortness of breath pollen"
+      ],
+      "related": [
+        "asthma",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "wheezing",
+      "type": "symptom",
+      "label": "Свистящее дыхание",
+      "standalone": true,
+      "aliases": [
+        "свистящее дыхание",
+        "свистящее дыханиеу",
+        "свистящее дыханиеом",
+        "свистящее дыханиее",
+        "свистящее дыханиеа",
+        "свистящее дыханиеы",
+        "свисты в груди",
+        "свисты в грудиу",
+        "свисты в грудие",
+        "свисты в грудиом",
+        "свисты в грудиы",
+        "свисты в грудиа",
+        "хрипы",
+        "хрипыы",
+        "хрипыу",
+        "хрипыа",
+        "хрипые",
+        "хрипыом",
+        "wheezing"
+      ],
+      "chips": [
+        "wheezing",
+        "wheeze"
+      ],
+      "query_base_en": "wheezing",
+      "query_terms": [
+        "wheezing allergy",
+        "wheezing pollen asthma"
+      ],
+      "related": [
+        "asthma",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "symptoms",
+      "type": "symptom",
+      "label": "Симптомы",
+      "standalone": true,
+      "aliases": [
+        "симптомы",
+        "симптомыа",
+        "симптомыы",
+        "симптомыу",
+        "симптомые",
+        "симптомыом",
+        "симптом",
+        "симптомом",
+        "симптому",
+        "симптоме",
+        "симптома",
+        "симптоматика",
+        "симптоматике",
+        "симптоматику",
+        "симптоматикы",
+        "симптоматикою",
+        "симптоматикой",
+        "проявления",
+        "проявлению",
+        "проявлении",
+        "проявленией",
+        "клинические проявления",
+        "клинические проявлению",
+        "клинические проявлении",
+        "клинические проявленией"
+      ],
+      "chips": [
+        "allergy symptoms",
+        "clinical symptoms",
+        "symptom profile"
+      ],
+      "query_base_en": "symptoms",
+      "query_terms": [
+        "allergy symptoms",
+        "clinical symptoms",
+        "symptom profile"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "conjunctivitis",
+        "asthma",
+        "atopic_dermatitis"
+      ]
+    },
+    {
+      "id": "tearing",
+      "type": "symptom",
+      "label": "Слезотечение",
+      "standalone": true,
+      "aliases": [
+        "слезотечение",
+        "слезотечениеу",
+        "слезотечениеом",
+        "слезотечениеа",
+        "слезотечениеы",
+        "слезотечениее",
+        "слезятся глаза",
+        "слезятся глазой",
+        "слезятся глазы",
+        "слезятся глазою",
+        "слезятся глазу",
+        "слезятся глазе",
+        "слезятся",
+        "слезятси",
+        "слезятсю",
+        "слезятсей",
+        "слезятсею",
+        "слезятсе",
+        "текут слезы",
+        "текут слезые",
+        "текут слезыу",
+        "текут слезыа",
+        "текут слезыом",
+        "текут слезыы"
+      ],
+      "chips": [
+        "tearing",
+        "watery eyes",
+        "epiphora"
+      ],
+      "query_base_en": "watery eyes",
+      "query_terms": [
+        "watery eyes allergy",
+        "tearing pollen allergy"
+      ],
+      "related": [
+        "conjunctivitis",
+        "rhinoconjunctivitis",
+        "allergy",
+        "pollen"
+      ]
+    },
+    {
+      "id": "sneezing",
+      "type": "symptom",
+      "label": "Чихание",
+      "standalone": true,
+      "aliases": [
+        "чихание",
+        "чиханиеа",
+        "чиханиеы",
+        "чиханиеом",
+        "чиханиее",
+        "чиханиеу",
+        "чих",
+        "чихы",
+        "чихе",
+        "чихом",
+        "чиху",
+        "чиха",
+        "чихает",
+        "чихаеты",
+        "чихаета",
+        "чихаетом",
+        "чихаету",
+        "чихаете"
+      ],
+      "chips": [
+        "sneezing",
+        "sternutation"
+      ],
+      "query_base_en": "sneezing",
+      "query_terms": [
+        "sneezing",
+        "nasal allergy symptoms"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "pollen",
+        "allergy"
+      ]
+    },
+    {
+      "id": "leukotriene_antagonists",
+      "type": "treatment",
+      "label": "Антагонисты лейкотриенов",
+      "standalone": true,
+      "aliases": [
+        "антагонисты лейкотриенов",
+        "антагонисты лейкотриеновы",
+        "антагонисты лейкотриенове",
+        "антагонисты лейкотриеновом",
+        "антагонисты лейкотриенова",
+        "антагонисты лейкотриенову",
+        "антагонисты рецепторов лейкотриенов",
+        "антагонисты рецепторов лейкотриеновы",
+        "антагонисты рецепторов лейкотриенове",
+        "антагонисты рецепторов лейкотриеновом",
+        "антагонисты рецепторов лейкотриенова",
+        "антагонисты рецепторов лейкотриенову",
+        "монтелукаст",
+        "монтелукасте",
+        "монтелукасты",
+        "монтелукастом",
+        "монтелукасту",
+        "монтелукаста"
+      ],
+      "chips": [
+        "leukotriene receptor antagonists",
+        "montelukast"
+      ],
+      "query_base_en": "leukotriene receptor antagonists",
+      "query_terms": [
+        "leukotriene receptor antagonists allergy",
+        "montelukast allergic rhinitis"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "asthma",
+        "allergy"
+      ]
+    },
+    {
+      "id": "antihistamines",
+      "type": "treatment",
+      "label": "Антигистаминные",
+      "standalone": true,
+      "aliases": [
+        "антигистаминные",
+        "антигистаминныее",
+        "антигистаминныеу",
+        "антигистаминныеа",
+        "антигистаминныеом",
+        "антигистаминныеы",
+        "антигистаминные препараты",
+        "антигистаминные препаратые",
+        "антигистаминные препаратыом",
+        "антигистаминные препаратыы",
+        "антигистаминные препаратыа",
+        "антигистаминные препаратыу",
+        "антигистамины",
+        "антигистаминыом",
+        "антигистаминые",
+        "антигистаминыа",
+        "антигистаминыу",
+        "антигистаминыы"
+      ],
+      "chips": [
+        "antihistamines",
+        "H1 antihistamines"
+      ],
+      "query_base_en": "antihistamines",
+      "query_terms": [
+        "antihistamines",
+        "H1 antihistamines allergy"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "conjunctivitis"
+      ]
+    },
+    {
+      "id": "eye_drops",
+      "type": "treatment",
+      "label": "Глазные капли",
+      "standalone": true,
+      "aliases": [
+        "глазные капли",
+        "глазные каплиы",
+        "глазные каплиа",
+        "глазные каплиом",
+        "глазные каплиу",
+        "глазные каплие",
+        "капли для глаз",
+        "капли для глазы",
+        "капли для глазом",
+        "капли для глаза",
+        "капли для глазе",
+        "капли для глазу",
+        "офтальмологические капли",
+        "офтальмологические каплиы",
+        "офтальмологические каплиа",
+        "офтальмологические каплиом",
+        "офтальмологические каплиу",
+        "офтальмологические каплие"
+      ],
+      "chips": [
+        "eye drops",
+        "ophthalmic drops"
+      ],
+      "query_base_en": "eye drops",
+      "query_terms": [
+        "eye drops allergic conjunctivitis",
+        "ophthalmic drops allergy"
+      ],
+      "related": [
+        "conjunctivitis",
+        "rhinoconjunctivitis",
+        "allergy"
+      ]
+    },
+    {
+      "id": "immunotherapy",
+      "type": "treatment",
+      "label": "Иммунотерапия",
+      "standalone": true,
+      "aliases": [
+        "иммунотерапия",
+        "иммунотерапии",
+        "иммунотерапию",
+        "иммунотерапией",
+        "асит",
+        "аситы",
+        "аситу",
+        "аситом",
+        "асите",
+        "асита",
+        "аллерген-специфическая иммунотерапия",
+        "аллерген-специфическая иммунотерапии",
+        "аллерген-специфическая иммунотерапию",
+        "аллерген-специфическая иммунотерапией",
+        "десенсибилизация",
+        "десенсибилизации",
+        "десенсибилизацией",
+        "десенсибилизацию",
+        "Immunotherapy",
+        "Immunotherapies",
+        "Desensitization, Immunologic",
+        "Desensitizations, Immunologic",
+        "Immunologic Desensitizations",
+        "Therapy, Hyposensitization",
+        "Hyposensitization Therapies",
+        "Hyposensitization Therapy",
+        "Immunologic Desensitization",
+        "Allergen Immunotherapy",
+        "Allergen Immunotherapies",
+        "Immunotherapy, Allergen",
+        "Venom Immunotherapy",
+        "Immunotherapy, Venom",
+        "Venom Immunotherapies",
+        "Allergy Shots",
+        "Allergy Shot",
+        "Shot, Allergy"
+      ],
+      "chips": [
+        "immunotherapy",
+        "allergen immunotherapy",
+        "desensitization"
+      ],
+      "query_base_en": "immunotherapy",
+      "query_terms": [
+        "immunotherapy",
+        "allergen immunotherapy",
+        "immunologic desensitization"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis",
+        "grass_pollen",
+        "birch_pollen",
+        "alder_pollen",
+        "mugwort_pollen",
+        "ragweed_pollen"
+      ]
+    },
+    {
+      "id": "intranasal_corticosteroids",
+      "type": "treatment",
+      "label": "Интраназальные кортикостероиды",
+      "standalone": true,
+      "aliases": [
+        "интраназальные кортикостероиды",
+        "интраназальные кортикостероидыом",
+        "интраназальные кортикостероидыа",
+        "интраназальные кортикостероидыу",
+        "интраназальные кортикостероидыы",
+        "интраназальные кортикостероидые",
+        "назальные стероиды",
+        "назальные стероидыу",
+        "назальные стероидыы",
+        "назальные стероидыа",
+        "назальные стероидые",
+        "назальные стероидыом",
+        "интраназальные стероиды",
+        "интраназальные стероидыу",
+        "интраназальные стероидыы",
+        "интраназальные стероидыа",
+        "интраназальные стероидые",
+        "интраназальные стероидыом"
+      ],
+      "chips": [
+        "intranasal corticosteroids",
+        "nasal steroids"
+      ],
+      "query_base_en": "intranasal corticosteroids",
+      "query_terms": [
+        "intranasal corticosteroids",
+        "nasal steroids allergic rhinitis"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "allergy"
+      ]
+    },
+    {
+      "id": "nasal_irrigation",
+      "type": "treatment",
+      "label": "Промывание носа",
+      "standalone": true,
+      "aliases": [
+        "промывание носа",
+        "промывание носе",
+        "промывание носой",
+        "промывание носою",
+        "промывание носы",
+        "промывание носу",
+        "ирригация носа",
+        "ирригация носе",
+        "ирригация носой",
+        "ирригация носою",
+        "ирригация носы",
+        "ирригация носу",
+        "солевое промывание",
+        "солевое промываниеу",
+        "солевое промываниеом",
+        "солевое промываниеа",
+        "солевое промываниее",
+        "солевое промываниеы"
+      ],
+      "chips": [
+        "nasal irrigation",
+        "saline irrigation"
+      ],
+      "query_base_en": "nasal irrigation",
+      "query_terms": [
+        "nasal irrigation allergic rhinitis",
+        "saline irrigation allergy"
+      ],
+      "related": [
+        "allergic_rhinitis",
+        "allergy"
+      ]
+    },
+    {
+      "id": "pollen",
+      "type": "trigger",
+      "label": "Пыльца",
+      "standalone": true,
+      "aliases": [
+        "пыльца",
+        "пыльцы",
+        "пыльце",
+        "пыльцу",
+        "пыльцою",
+        "пыльцой",
+        "пыльцыом",
+        "пыльцыа",
+        "пыльцыу",
+        "пыльцые",
+        "пыльцыы",
+        "пыльцуу",
+        "пыльцуом",
+        "пыльцуа",
+        "пыльцуы",
+        "пыльцуе",
+        "пыльцевой",
+        "пыльцевом",
+        "пыльцевого",
+        "пыльцевую",
+        "пыльцевый",
+        "пыльцевое",
+        "пыльцевые",
+        "пыльцевым",
+        "пыльцевая",
+        "пыльцевому",
+        "пыльцевыеы",
+        "пыльцевыее",
+        "пыльцевыеа",
+        "пыльцевыеу",
+        "пыльцевыеом",
+        "Pollen",
+        "Pollen Grains",
+        "Grain, Pollen",
+        "Grains, Pollen",
+        "Pollen Grain",
+        "Plant Microspores",
+        "Microspore, Plant",
+        "Plant Microspore",
+        "Microspores, Plant",
+        "Male Gametophytes",
+        "Gametophyte, Male",
+        "Gametophytes, Male",
+        "Male Gametophyte",
+        "Male Gametes, Plant",
+        "Gamete, Plant Male",
+        "Gametes, Plant Male",
+        "Male Gamete, Plant",
+        "Plant Male Gamete",
+        "Plant Male Gametes",
+        "anther",
+        "flower",
+        "inflorescence"
+      ],
+      "chips": [
+        "pollen",
+        "airborne pollen"
+      ],
+      "query_base_en": "pollen",
+      "query_terms": [
+        "pollen",
+        "airborne pollen"
+      ],
+      "related": [
+        "allergy",
+        "allergic_rhinitis"
+      ]
+    }
+  ]
+}

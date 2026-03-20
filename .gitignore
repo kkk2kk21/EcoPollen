@@ -1,0 +1,42 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend / Vite
+node_modules/
+frontend/dist/
+frontend/node_modules/
+frontend/node_modules/.vite/
+frontend/node_modules/.vite-temp/
+
+# Environment / local
+.env
+.env.*
+!.env.example
+*.pem
+.venv/
+venv/
+
+# Logs / temp
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Coverage / reports
+.coverage
+coverage/
+htmlcov/
+
+# Local research artefacts
+backend/data/ontologies/raw/
