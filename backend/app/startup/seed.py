@@ -17,6 +17,11 @@ from ..core.security import hash_password
 
 DEFAULT_ADMIN_EMAIL = os.getenv("DEFAULT_ADMIN_EMAIL", "admin@example.local").strip().lower()
 DEFAULT_ADMIN_PASSWORD = os.getenv("DEFAULT_ADMIN_PASSWORD", "ChangeMe123!")
+TAXON_MODEL_FIELDS = ("key", "name_ru", "emoji", "group")
+
+
+def _taxon_model_payload(item: dict) -> dict:
+    return {field: item[field] for field in TAXON_MODEL_FIELDS if field in item}
 
 def seed_if_empty(db: Session) -> None:
     # 1) Админ для теста (создаётся только если пользователей нет)
@@ -107,7 +112,7 @@ def seed_if_empty(db: Session) -> None:
     for item in POLLEN_TAXA_CATALOG:
         taxon = existing_taxa.get(item["key"])
         if taxon is None:
-            db.add(PollenTaxon(**item))
+            db.add(PollenTaxon(**_taxon_model_payload(item)))
             taxa_changed = True
             continue
 
