@@ -9,6 +9,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { apiFetch, clearToken, getToken } from "../../shared/api/auth";
+import { requestJson } from "../../shared/api/http";
 import MapAttributionCleaner from "../../shared/components/MapAttributionCleaner";
 import "./ScienceCabinet.css";
 
@@ -165,7 +166,9 @@ export default function ScienceCabinet() {
   );
 
   async function refreshTrapLocations(preferred = {}) {
-    const locs = await fetch("/api/v1/locations").then((r) => r.json());
+    const locs = await requestJson("/api/v1/locations", {
+      errorMessage: "Не удалось загрузить список ловушек",
+    });
     const traps = sortTrapLocations((locs || []).filter((item) => item.kind === "trap"));
     setLocations(traps);
 
@@ -196,8 +199,9 @@ export default function ScienceCabinet() {
   }
 
   useEffect(() => {
-    fetch("/api/v1/taxa")
-      .then((r) => r.json())
+    requestJson("/api/v1/taxa", {
+      errorMessage: "Не удалось загрузить список аллергенов",
+    })
       .then((items) => {
         const nextTaxa = Array.isArray(items) ? items : [];
         setTaxa(nextTaxa);

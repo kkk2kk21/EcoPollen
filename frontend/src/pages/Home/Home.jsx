@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Circle, MapContainer, TileLayer } from "react-leaflet";
+import { requestJson } from "../../shared/api/http";
 import { fetchMapPlaces } from "../../shared/api/mapPlaces";
 import MapAttributionCleaner from "../../shared/components/MapAttributionCleaner";
 import { readPreferredMapPlaceId, savePreferredMapPlace } from "../../shared/mapSelection";
@@ -80,6 +81,8 @@ export default function Home() {
   const [summary, setSummary] = useState(null);
   const [loadingPlaces, setLoadingPlaces] = useState(true);
   const [loadingSummary, setLoadingSummary] = useState(false);
+  const [hasLoadedSummary, setHasLoadedSummary] = useState(false);
+  const [resolvedSummaryPlaceId, setResolvedSummaryPlaceId] = useState("");
   const [error, setError] = useState("");
   const placePickerRef = useRef(null);
   const riskDisplayRef = useRef(null);
@@ -115,12 +118,17 @@ export default function Home() {
           null;
 
         if (preferredPlace) {
+          setSummary(null);
+          setHasLoadedSummary(false);
+          setResolvedSummaryPlaceId("");
+          setLoadingSummary(true);
           setSelectedPlaceId(String(preferredPlace.id));
           setPlaceQuery(preferredPlace.label || preferredPlace.name || "");
           savePreferredMapPlace(preferredPlace);
         }
       } catch (e) {
         setError(e.message || "Ошибка загрузки городов");
+        setLoadingSummary(false);
       } finally {
         setLoadingPlaces(false);
       }
@@ -188,33 +196,46 @@ export default function Home() {
 
   useEffect(() => {
     async function loadSummary() {
-      if (!selectedPlace) return;
+      if (!selectedPlace) {
+        setSummary(null);
+        setHasLoadedSummary(false);
+        setResolvedSummaryPlaceId("");
+        setLoadingSummary(false);
+        return;
+      }
+
+      const currentPlaceId = String(selectedPlace.id);
 
       try {
         setLoadingSummary(true);
+        setHasLoadedSummary(false);
+        setResolvedSummaryPlaceId("");
         setError("");
 
-      const query = new URLSearchParams();
-      if (selectedPlace.location_id) {
-        query.set("location_id", String(selectedPlace.location_id));
-      } else if (selectedPlace.external_location_id) {
-        query.set("external_location_id", String(selectedPlace.external_location_id));
-      } else {
-        query.set("lat", String(selectedPlace.lat));
-        query.set("lon", String(selectedPlace.lon));
-      }
-      if (selectedPlace.source_key) {
-        query.set("preferred_source_key", String(selectedPlace.source_key));
-      }
+        const query = new URLSearchParams();
+        if (selectedPlace.location_id) {
+          query.set("location_id", String(selectedPlace.location_id));
+        } else if (selectedPlace.external_location_id) {
+          query.set("external_location_id", String(selectedPlace.external_location_id));
+        } else {
+          query.set("lat", String(selectedPlace.lat));
+          query.set("lon", String(selectedPlace.lon));
+        }
+        if (selectedPlace.source_key) {
+          query.set("preferred_source_key", String(selectedPlace.source_key));
+        }
 
-        const res = await fetch(`/api/v1/summary?${query.toString()}`);
-        if (!res.ok) throw new Error("Не удалось загрузить сводку");
-
-        const data = await res.json();
+        const data = await requestJson(`/api/v1/summary?${query.toString()}`, {
+          errorMessage: "Не удалось загрузить сводку",
+        });
         setSummary(data);
+        setHasLoadedSummary(true);
+        setResolvedSummaryPlaceId(currentPlaceId);
       } catch (e) {
         setError(e.message || "Ошибка загрузки сводки");
         setSummary(null);
+        setHasLoadedSummary(true);
+        setResolvedSummaryPlaceId(currentPlaceId);
       } finally {
         setLoadingSummary(false);
       }
@@ -225,6 +246,10 @@ export default function Home() {
 
   function applyPlaceSelection(place) {
     if (!place) return;
+    setSummary(null);
+    setHasLoadedSummary(false);
+    setResolvedSummaryPlaceId("");
+    setLoadingSummary(true);
     setSelectedPlaceId(String(place.id));
     setPlaceQuery(place.label || place.name || "");
     setIsPlaceMenuOpen(false);
@@ -249,6 +274,14 @@ export default function Home() {
   const recommendations = summary?.recommendations || [];
   const taxa = summary?.taxa || [];
   const riskLabel = summary?.overall?.display_label || summary?.overall?.label || "—";
+  const showSummaryLoader = loadingPlaces || loadingSummary || (!!selectedPlace && !hasLoadedSummary);
+  const showEmptySummaryState =
+    !showSummaryLoader &&
+    !summary &&
+    !error &&
+    !!selectedPlace &&
+    hasLoadedSummary &&
+    resolvedSummaryPlaceId === String(selectedPlace.id);
   const orderedTaxa = useMemo(() => {
     return [...taxa]
       .filter((item) => item?.raw_value != null)
@@ -320,9 +353,10 @@ export default function Home() {
     <div className="page-section home-page">
       {error && <div className="note">{error}</div>}
 
-      {loadingSummary ? (
-        <section className="card">
-          <div className="note">Загружается сводка...</div>
+      {showSummaryLoader ? (
+        <section className="card auth-loader-card" aria-live="polite">
+          <div className="auth-loader-spinner" aria-hidden="true" />
+          <div className="auth-loader-text">Загружаем сводку...</div>
         </section>
       ) : summary ? (
         <section className="home-hero">
@@ -529,13 +563,11 @@ export default function Home() {
             </div>
           </Link>
         </section>
-      ) : (
-        !error && (
-          <section className="card">
-            <div className="note">Нет данных для отображения сводки.</div>
-          </section>
-        )
-      )}
+      ) : showEmptySummaryState ? (
+        <section className="card">
+          <div className="note">Нет данных для отображения сводки.</div>
+        </section>
+      ) : null}
     </div>
   );
 }

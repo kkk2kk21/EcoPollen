@@ -18,6 +18,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { requestJson } from "../../shared/api/http";
 import MapAttributionCleaner from "../../shared/components/MapAttributionCleaner";
 import { fetchMapPlaces } from "../../shared/api/mapPlaces";
 import {
@@ -808,10 +809,9 @@ export default function MapAnalytics() {
     async function loadTaxa() {
       try {
         setError("");
-        const res = await fetch("/api/v1/taxa");
-        if (!res.ok) throw new Error("Не удалось загрузить аллергены");
-
-        const data = await res.json();
+        const data = await requestJson("/api/v1/taxa", {
+          errorMessage: "Не удалось загрузить аллергены",
+        });
         const items = Array.isArray(data) ? data : [];
         setTaxa(items);
       } catch (e) {
@@ -856,9 +856,9 @@ export default function MapAnalytics() {
   useEffect(() => {
     async function loadCircleStyles() {
       try {
-        const res = await fetch("/api/v1/map-circle-styles");
-        if (!res.ok) throw new Error("Не удалось загрузить стили карты");
-        const data = await res.json();
+        const data = await requestJson("/api/v1/map-circle-styles", {
+          errorMessage: "Не удалось загрузить стили карты",
+        });
         const nextRules = { ...DEFAULT_SOURCE_RADIUS_RULES };
 
         for (const item of Array.isArray(data) ? data : []) {
@@ -882,10 +882,9 @@ export default function MapAnalytics() {
     async function loadSources() {
       try {
         setError("");
-        const res = await fetch("/api/v1/sources");
-        if (!res.ok) throw new Error("Не удалось загрузить источники");
-
-        const data = await res.json();
+        const data = await requestJson("/api/v1/sources", {
+          errorMessage: "Не удалось загрузить источники",
+        });
         const mapped = (Array.isArray(data) ? data : []).map((source) => {
           return {
             id: source.key,
@@ -1074,10 +1073,9 @@ export default function MapAnalytics() {
                 }
                 url = `/api/v1/heatmap/db?${query.toString()}`;
 
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`Не удалось загрузить слой ${layer.id}`);
-
-                const data = await res.json();
+                const data = await requestJson(url, {
+                  errorMessage: `Не удалось загрузить слой ${layer.id}`,
+                });
                 let points = Array.isArray(data.points) ? data.points : [];
 
                 if (layer.id === "pgniu_manual") {
@@ -1156,10 +1154,9 @@ export default function MapAnalytics() {
               query.set("lon", String(selectedPlace.lon));
               query.set("place_name", selectedPlace.name);
             }
-            const res = await fetch(`/api/v1/timeseries?${query.toString()}`);
-            if (!res.ok) throw new Error("Не удалось загрузить график");
-
-            return res.json();
+            return requestJson(`/api/v1/timeseries?${query.toString()}`, {
+              errorMessage: "Не удалось загрузить график",
+            });
           },
         });
 

@@ -1,3 +1,5 @@
+import { requestJson } from "./http";
+
 const MAP_PLACES_CACHE_TTL_MS = 15 * 60 * 1000;
 
 let mapPlacesCache = null;
@@ -14,12 +16,9 @@ export async function fetchMapPlaces({ force = false } = {}) {
   }
 
   mapPlacesInflightRequest = (async () => {
-    const res = await fetch("/api/v1/map-locations");
-    if (!res.ok) {
-      throw new Error("Не удалось загрузить точки карты");
-    }
-
-    const data = await res.json();
+    const data = await requestJson("/api/v1/map-locations", {
+      errorMessage: "Не удалось загрузить точки карты",
+    });
     const items = Array.isArray(data) ? data : [];
 
     mapPlacesCache = items;

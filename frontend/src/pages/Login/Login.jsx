@@ -1,6 +1,7 @@
 ﻿import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiFetch, setToken } from "../../shared/api/auth";
+import { requestJson } from "../../shared/api/http";
 import { useAuthSession } from "../../shared/auth/AuthSession";
 import eyePasswordHideIcon from "../../shared/icons/eye-password-hide.svg";
 import eyePasswordShowIcon from "../../shared/icons/eye-password-show.svg";
@@ -32,16 +33,12 @@ export default function Login() {
     form.set("username", nextEmail.trim());
     form.set("password", nextPassword);
 
-    const res = await fetch("/api/v1/auth/login", {
+    return requestJson("/api/v1/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: form.toString(),
+      errorMessage: "Не удалось войти",
     });
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.detail || "не удалось войти");
-    }
-    return data;
   }
 
   function switchMode(nextMode) {
