@@ -1,0 +1,15 @@
+[run]
+branch = True
+omit =
+    */tests/*
+    */__init__.py
+    */api/routes/library.py
+    */api/routes/pollen.py
+    */services/external_pollen_sources.py
+    */services/pollen_import_service.py
+    */services/pollen_scheduler.py
+    */main.py
+
+[report]
+show_missing = True
+skip_covered = False

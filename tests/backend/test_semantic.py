@@ -1,5 +1,6 @@
 import asyncio
 import unittest
+from tests.backend import _bootstrap  # noqa: F401
 
 from app.search.semantic import expand_query
 

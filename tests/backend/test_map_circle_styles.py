@@ -1,4 +1,5 @@
 import unittest
+from tests.backend import _bootstrap  # noqa: F401
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session

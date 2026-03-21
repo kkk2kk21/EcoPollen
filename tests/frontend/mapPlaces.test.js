@@ -1,7 +1,7 @@
 describe("mapPlaces cache", () => {
   async function loadApi() {
     vi.resetModules();
-    return import("../src/shared/api/mapPlaces.js");
+    return import("../../frontend/src/shared/api/mapPlaces.js");
   }
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe("mapPlaces cache", () => {
 
     fetch.mockResolvedValue({
       ok: true,
-      json: async () => [{ id: "1", name: "Пермь" }],
+      text: async () => JSON.stringify([{ id: "1", name: "Пермь" }]),
     });
 
     const first = await fetchMapPlaces();
@@ -44,7 +44,7 @@ describe("mapPlaces cache", () => {
 
     resolveFetch({
       ok: true,
-      json: async () => [{ id: "2", name: "Москва" }],
+      text: async () => JSON.stringify([{ id: "2", name: "Москва" }]),
     });
 
     const [first, second] = await Promise.all([firstPromise, secondPromise]);
@@ -57,11 +57,11 @@ describe("mapPlaces cache", () => {
     fetch
       .mockResolvedValueOnce({
         ok: true,
-        json: async () => [{ id: "1", name: "Пермь" }],
+        text: async () => JSON.stringify([{ id: "1", name: "Пермь" }]),
       })
       .mockResolvedValueOnce({
         ok: true,
-        json: async () => [{ id: "2", name: "Москва" }],
+        text: async () => JSON.stringify([{ id: "2", name: "Москва" }]),
       });
 
     await fetchMapPlaces();
@@ -76,9 +76,10 @@ describe("mapPlaces cache", () => {
 
     fetch.mockResolvedValue({
       ok: false,
-      json: async () => [],
+      status: 500,
+      text: async () => JSON.stringify([]),
     });
 
-    await expect(fetchMapPlaces()).rejects.toThrow("Не удалось загрузить точки карты");
+    await expect(fetchMapPlaces()).rejects.toThrow("HTTP 500: Не удалось загрузить точки карты");
   });
 });

@@ -11,7 +11,7 @@ Docker
 Юнит-тесты вынесены отдельно от основного кода:
 
 backend: `tests/backend`
-frontend: `frontend/tests`
+frontend: `tests/frontend`
 
 ## Структура
 

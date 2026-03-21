@@ -1,4 +1,5 @@
 import unittest
+from tests.backend import _bootstrap  # noqa: F401
 
 from app.core.security import (
     create_access_token,

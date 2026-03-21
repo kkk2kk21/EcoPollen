@@ -4,7 +4,7 @@ import {
   DEFAULT_LIMIT,
   formatPublicationLabel,
   normalizeExpandedTerm,
-} from "../src/pages/Library/libraryUtils.js";
+} from "../../frontend/src/pages/Library/libraryUtils.js";
 
 describe("libraryUtils", () => {
   it("normalizes expanded term text", () => {

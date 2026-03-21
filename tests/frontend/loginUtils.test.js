@@ -1,4 +1,4 @@
-import { redirectByRole, resolveRequestedPath } from "../src/pages/Login/loginUtils.js";
+import { redirectByRole, resolveRequestedPath } from "../../frontend/src/pages/Login/loginUtils.js";
 
 describe("loginUtils", () => {
   it("redirects by role", () => {

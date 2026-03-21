@@ -2,7 +2,7 @@ import {
   clearPreferredMapPlace,
   readPreferredMapPlaceId,
   savePreferredMapPlace,
-} from "../src/shared/mapSelection.js";
+} from "../../frontend/src/shared/mapSelection.js";
 
 describe("mapSelection", () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { apiFetch, clearToken, getToken, setToken } from "../src/shared/api/auth.js";
+import { apiFetch, clearToken, getToken, setToken } from "../../frontend/src/shared/api/auth.js";
 
 describe("auth api helpers", () => {
   beforeEach(() => {
