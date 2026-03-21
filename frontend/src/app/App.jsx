@@ -1,4 +1,4 @@
-import {
+﻿import {
   BrowserRouter,
   NavLink,
   Routes,
@@ -245,6 +245,13 @@ function AppFrame() {
           </Suspense>
         </div>
       </main>
+
+      <footer className="site-footer">
+        <div className="site-footer-inner">
+          <span>По всем вопросам: </span>
+          <a href="mailto:tvgoroshenkin@edu.hse.ru">tvgoroshenkin@edu.hse.ru</a>
+        </div>
+      </footer>
 
       {isPasswordModalOpen ? (
         <div className="account-modal-backdrop" onClick={closePasswordModal}>
