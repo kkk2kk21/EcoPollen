@@ -221,9 +221,26 @@ img {
   max-width: var(--container);
   margin: 0 auto;
   padding: 16px 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.5;
+}
+
+.site-footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.site-footer-copy {
+  color: #4d5f73;
+  white-space: nowrap;
 }
 
 .site-footer-inner a {
@@ -630,6 +647,7 @@ td {
 
   .site-footer-inner {
     padding: 14px 16px 18px;
+    align-items: flex-start;
   }
 
   .site-header-inner {

@@ -248,8 +248,11 @@ function AppFrame() {
 
       <footer className="site-footer">
         <div className="site-footer-inner">
-          <span>По всем вопросам: </span>
-          <a href="mailto:tvgoroshenkin@edu.hse.ru">tvgoroshenkin@edu.hse.ru</a>
+          <div className="site-footer-contact">
+            <span>По всем вопросам: </span>
+            <a href="mailto:tvgoroshenkin@edu.hse.ru">tvgoroshenkin@edu.hse.ru</a>
+          </div>
+          <div className="site-footer-copy">© EcoPollen, 2026</div>
         </div>
       </footer>
 
