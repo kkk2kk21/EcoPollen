@@ -22,7 +22,9 @@ frontend: `frontend/tests`
 ## Запуск
 
 ```powershell
-docker compose up -d --build
+Заполнить .env.example своими значениями
+Убрать .example из .env.example
+Выполнить docker compose up -d --build в корне проекта
 ```
 
 После запуска:
