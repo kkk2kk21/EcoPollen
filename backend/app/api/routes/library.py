@@ -65,8 +65,8 @@ BROAD_TOPIC_TOKENS = {
     "pollen",
     "pollens",
 }
-# Generic medical terms help broaden external queries, but are too weak to prove
-# that a result is really about the user's specific topic.
+# Общие медтермины помогают расширить внешний поиск
+# но сами по себе ещё не значат, что статья правда по нужной теме
 GENERIC_TOPIC_TOKENS = {
     "аллергия",
     "аллергии",
@@ -140,7 +140,7 @@ GENERIC_TOPIC_TOKENS = {
     "children",
     "airborne",
 }
-# Service words should never become topic anchors.
+# Служебные слова не превращаем в смысловые якоря
 TOPIC_STOPWORDS = {
     "в",
     "на",
@@ -737,10 +737,9 @@ async def _get_cached_search(
             entry
             for entry in SEARCH_CACHE.values()
             if entry["lookup_key"] == lookup_key
-            # The cache stores the full fetched payload, not individual pages.
-            # Requiring page * limit here only causes unnecessary misses for the
-            # last page (and any later page revisits), because pagination is
-            # always sliced from the same cached result set.
+            # В кэше лежит весь собранный набор
+            # поэтому проверка page * limit здесь только зря ломает попадание в кэш
+            # особенно на последней странице и при повторных открытиях
             and _covers_sources(
                 cached_sources=entry["fetched_sources"],
                 requested_sources=requested_sources,

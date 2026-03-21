@@ -69,20 +69,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Публичные
 app.include_router(pollen.router, prefix="/api/v1")
 
-# Авторизация
 app.include_router(auth.router, prefix="/api/v1")
 
-# Только админы/учёные
 app.include_router(admin.router, prefix="/api/v1")
 
-# Поиск статей (только авторизованные)
 app.include_router(library.router, prefix="/api/v1")
-
 app.include_router(science.router, prefix="/api/v1")
-
 app.include_router(jobs.router, prefix="/api/v1")
 
 @app.get("/health", include_in_schema=False)

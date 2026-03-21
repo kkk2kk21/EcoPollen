@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
 from passlib.context import CryptContext
-from jose import jwt, JWTError
+from jose import jwt
 
 JWT_SECRET = os.getenv("JWT_SECRET", "change_me_jwt_secret")
 JWT_ALGORITHM = "HS256"

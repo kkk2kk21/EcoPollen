@@ -1,4 +1,4 @@
-import { divIcon } from "leaflet";
+﻿import { divIcon } from "leaflet";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CircleMarker,
@@ -112,7 +112,7 @@ export default function ScienceCabinet() {
   const [meErr, setMeErr] = useState("");
 
   const [locations, setLocations] = useState([]);
-  const [locMode, setLocMode] = useState("select"); // select | edit | new
+  const [locMode, setLocMode] = useState("select"); // режим работы с ловушкой: select | edit | new
   const [locationId, setLocationId] = useState("");
   const [editTrapId, setEditTrapId] = useState("");
   const [deleteTrapId, setDeleteTrapId] = useState("");
@@ -950,8 +950,7 @@ export default function ScienceCabinet() {
                 <b>Пороги близости источников для графика</b>
                 <div className="science-style-card-copy">
                   Определяют, какие источники считаются достаточно близкими к выбранной точке и
-                  попадают в график. Для ловушек ПГНИУ эта же настройка используется при подборе
-                  ближайшей внутренней точки. Расстояние считается по координатам в метрах.
+                  попадают в график. Расстояние считается в метрах.
                 </div>
               </div>
 
@@ -1003,7 +1002,7 @@ export default function ScienceCabinet() {
           <div className="science-cabinet-section-head">
             <h3 className="science-cabinet-section-title">История замеров</h3>
             <p className="science-cabinet-section-copy">
-              Просматривайте записи за выбранную дату и при необходимости фильтруйте их по активной ловушке.
+              Показывает записи за выбранную дату.
             </p>
           </div>
           {historyErr && <div className="note">{historyErr}</div>}

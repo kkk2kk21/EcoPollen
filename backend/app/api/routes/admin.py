@@ -5,7 +5,7 @@ from sqlalchemy import func, select
 from ...core.db import get_db
 from ...domain.models import User
 from ...core.security import hash_password
-from .auth import get_current_user, require_roles  # берём проверку ролей из auth.py
+from .auth import get_current_user, require_roles
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 VALID_ROLES = {"student", "scientist", "admin"}

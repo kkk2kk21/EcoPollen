@@ -92,7 +92,7 @@ async def search_pubmed(
         if sort in ("date_desc", "date_asc"):
             params["sort"] = "pub date"
 
-        # 1) esearch -> ids
+        # Сначала берём список id
         r = await client.get(
             f"{BASE}/esearch.fcgi",
             params=params,
@@ -102,7 +102,7 @@ async def search_pubmed(
         if not ids:
             return []
 
-        # 2) esummary -> metadata
+        # Потом вытягиваем метаданные
         r2 = await client.get(
             f"{BASE}/esummary.fcgi",
             params={"db": "pubmed", "retmode": "json", "id": ",".join(ids)},

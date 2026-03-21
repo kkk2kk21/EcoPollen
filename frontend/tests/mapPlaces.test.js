@@ -1,8 +1,10 @@
-import { clearMapPlacesCache, fetchMapPlaces } from "../src/shared/api/mapPlaces.js";
-
 describe("mapPlaces cache", () => {
+  async function loadApi() {
+    vi.resetModules();
+    return import("../src/shared/api/mapPlaces.js");
+  }
+
   beforeEach(() => {
-    clearMapPlacesCache();
     global.fetch = vi.fn();
   });
 
@@ -11,6 +13,8 @@ describe("mapPlaces cache", () => {
   });
 
   it("caches successful response", async () => {
+    const { fetchMapPlaces } = await loadApi();
+
     fetch.mockResolvedValue({
       ok: true,
       json: async () => [{ id: "1", name: "Пермь" }],
@@ -25,6 +29,7 @@ describe("mapPlaces cache", () => {
   });
 
   it("deduplicates inflight request", async () => {
+    const { fetchMapPlaces } = await loadApi();
     let resolveFetch;
     fetch.mockReturnValue(
       new Promise((resolve) => {
@@ -47,6 +52,8 @@ describe("mapPlaces cache", () => {
   });
 
   it("bypasses cache when force enabled", async () => {
+    const { fetchMapPlaces } = await loadApi();
+
     fetch
       .mockResolvedValueOnce({
         ok: true,
@@ -65,6 +72,8 @@ describe("mapPlaces cache", () => {
   });
 
   it("throws readable error on non-ok response", async () => {
+    const { fetchMapPlaces } = await loadApi();
+
     fetch.mockResolvedValue({
       ok: false,
       json: async () => [],

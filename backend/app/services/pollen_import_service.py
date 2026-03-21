@@ -83,8 +83,8 @@ def get_or_create_external_location(
         )
     )
     if loc is None:
-        # Мягкая миграция старых записей: если location уже существовала по имени,
-        # переиспользуем её и проставляем новый source-native ключ.
+        # Если старая запись уже есть под тем же именем,
+        # просто переиспользуем её и обновляем native_key
         loc = db.scalar(
             select(ExternalLocation).where(
                 ExternalLocation.source_id == source.id,

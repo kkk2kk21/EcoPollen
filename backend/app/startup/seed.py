@@ -20,7 +20,7 @@ def _taxon_model_payload(item: dict) -> dict:
 
 
 def seed_if_empty(db: Session) -> None:
-    # 1) Админ для теста (создаётся только если пользователей нет)
+    # Если пользователей ещё нет, создаём стартового админа
     existing_user = db.scalars(select(User)).first()
     if not existing_user:
         admin = User(
@@ -31,7 +31,7 @@ def seed_if_empty(db: Session) -> None:
         db.add(admin)
         db.commit()
 
-    # 2) Источники данных
+    # Синхронизируем справочник источников
     existing_sources = {
         source.key: source
         for source in db.scalars(select(DataSource)).all()
@@ -57,7 +57,7 @@ def seed_if_empty(db: Session) -> None:
     ensure_map_circle_styles(db)
     ensure_external_timeseries_distance_settings(db)
 
-    # 3) Справочник аллергенов
+    # Синхронизируем справочник аллергенов
     existing_taxa = {
         taxon.key: taxon
         for taxon in db.scalars(select(PollenTaxon)).all()

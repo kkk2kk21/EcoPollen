@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { canvas as leafletCanvas } from "leaflet";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -1375,7 +1375,7 @@ export default function MapAnalytics() {
         <div className="map-page-copy">
           <h2 className="section-title map-page-title">Карта и аналитика</h2>
           <p className="section-subtitle">
-            Карта слоев пыльцы, быстрые фильтры по локации и аллергену, плюс
+            Карта слоев пыльцы, фильтры по локации и аллергену, плюс
             график уровня опасности за 7 дней.
           </p>
         </div>
@@ -1734,7 +1734,7 @@ export default function MapAnalytics() {
             <div className="legend-block">
               <p className="legend-title">Индексные источники</p>
               <p className="legend-copy">
-                Для DWD и Norkko шкала задаётся самим источником, а не числом пыльцы на м³.
+                Для DWD и Norkko шкала задаётся индексом, а не числом пыльцы на м³.
               </p>
               <div className="legend-list">
                 {indexLegendItems.map((item) => (

@@ -4,12 +4,6 @@ let mapPlacesCache = null;
 let mapPlacesExpiresAt = 0;
 let mapPlacesInflightRequest = null;
 
-export function clearMapPlacesCache() {
-  mapPlacesCache = null;
-  mapPlacesExpiresAt = 0;
-  mapPlacesInflightRequest = null;
-}
-
 export async function fetchMapPlaces({ force = false } = {}) {
   if (!force && mapPlacesCache && mapPlacesExpiresAt > Date.now()) {
     return mapPlacesCache;

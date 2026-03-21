@@ -7,8 +7,8 @@ from pydantic import BaseModel, Field
 
 
 class LocationRef(BaseModel):
-    # Можно передать либо id существующей локации,
-    # либо координаты+название для новой ловушки.
+    # Можно дать id готовой локации
+    # или координаты с именем для новой ловушки
     id: Optional[int] = None
     name: Optional[str] = None
     lat: Optional[float] = None
@@ -18,7 +18,7 @@ class LocationRef(BaseModel):
 
 class MeasurementValue(BaseModel):
     value: Optional[float] = None
-    unit: Optional[str] = None  # если не указано, возьмем default_unit
+    unit: Optional[str] = None  # если unit пустой, берём default_unit
 
 
 class MeasurementsCreate(BaseModel):

@@ -3,12 +3,11 @@ from __future__ import annotations
 from datetime import datetime, date, time, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import select, func, delete
+from sqlalchemy import select, delete
 from sqlalchemy.orm import Session
 from sqlalchemy.dialects.postgresql import insert
 
 from ...core.db import get_db
-from ...domain.location_kinds import INTERNAL_LOCATION_KINDS
 from ...services.map_circle_styles import (
     MAP_CIRCLE_STYLE_SOURCE_KEYS,
     list_map_circle_styles,
@@ -56,20 +55,20 @@ def _get_or_create_source(db: Session, key: str, name: str, source_type: str, pr
 
 
 def _get_or_create_location(db: Session, loc_in) -> Location:
-    # Если передали id — просто используем
+    # Если пришёл id, просто берём готовую локацию
     if loc_in.id is not None:
         loc = db.get(Location, loc_in.id)
         if not loc:
             raise HTTPException(status_code=404, detail="Локация (location.id) не найдена")
         return loc
 
-    # Иначе нужны координаты
+    # Если id нет, ждём координаты
     if loc_in.lat is None or loc_in.lon is None:
         raise HTTPException(status_code=400, detail="Нужно либо location.id, либо location.lat+location.lon")
 
     name = (loc_in.name or f"Ловушка {loc_in.lat:.4f},{loc_in.lon:.4f}").strip()
     kind = (loc_in.kind or "trap").strip().lower()
-    if kind not in INTERNAL_LOCATION_KINDS:
+    if kind != "trap":
         raise HTTPException(status_code=400, detail="kind должен быть: trap")
 
     existing_by_name = db.scalar(select(Location).where(Location.kind == "trap", Location.name == name))
@@ -205,7 +204,7 @@ def create_measurements(
     loc = _get_or_create_location(db, payload.location)
     ts0 = _day_start_utc(payload.ts)
 
-    # Получаем справочник аллергенов
+    # Справочник аллергенов держим под рукой, чтобы сразу валидировать ключи
     taxa = db.scalars(select(PollenTaxon)).all()
     taxon_by_key = {t.key: t for t in taxa}
 
@@ -217,12 +216,12 @@ def create_measurements(
             raise HTTPException(status_code=400, detail=f"Неизвестный аллерген: {taxon_key}")
 
         if mv.value is None:
-            continue  # пропускаем пустые
+            continue  # пустые значения просто пропускаем
 
         unit = (mv.unit or payload.default_unit or "grains/m3").strip().lower()
         taxon = taxon_by_key[taxon_key]
 
-        # UPSERT по уникальному ключу (source+location+taxon+ts)
+        # Если запись на этот день уже есть, просто аккуратно обновляем её
         stmt = insert(Observation).values(
             source_id=source.id,
             location_id=loc.id,

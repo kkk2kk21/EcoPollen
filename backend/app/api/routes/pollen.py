@@ -9,7 +9,6 @@ from datetime import timedelta, date, time
 from sqlalchemy import func
 
 from ...core.db import get_db
-from ...domain.location_kinds import INTERNAL_LOCATION_KINDS
 from ...services.map_circle_styles import list_map_circle_styles
 from ...services.external_timeseries_distance_settings import get_external_timeseries_distance_map
 from ...domain.models import Observation, ExternalObservation, PollenTaxon, DataSource, Location, ExternalLocation
@@ -26,11 +25,11 @@ from ...services.open_meteo_client import (
     POLLEN_VAR,
     PollenUnavailableError,
     fetch_current_pollen,
-    is_open_meteo_region_point,
 )
 from ...domain.pollen_taxa_catalog import OPEN_METEO_SUPPORTED_TAXA
 from ...domain.pollen_sources import ACTIVE_PUBLIC_SOURCE_KEYS
 from ...services.open_meteo_places_catalog import load_open_meteo_region_city_catalog
+from ...geo.open_meteo_region import is_open_meteo_region_point
 
 router = APIRouter(tags=["public"])
 HEATMAP_ACTIVE_LOCATION_RECENT_DAYS = 2
@@ -292,7 +291,7 @@ def list_sources(db: Session = Depends(get_db)):
 def list_locations(db: Session = Depends(get_db)):
     locs = db.scalars(
         select(Location)
-        .where(Location.kind.in_(INTERNAL_LOCATION_KINDS))
+        .where(Location.kind == "trap")
         .order_by(Location.kind, Location.name)
     ).all()
     return [
@@ -350,7 +349,7 @@ def _find_nearest_internal_location(
 
     candidates = db.scalars(
         select(Location).where(
-            Location.kind.in_(INTERNAL_LOCATION_KINDS),
+            Location.kind == "trap",
             func.abs(Location.lat - lat) <= max_delta,
             func.abs(Location.lon - lon) <= max_delta,
         )
@@ -364,13 +363,29 @@ def _find_nearest_internal_location(
     )
 
 
+def _latest_internal_observation_ts(
+    db: Session,
+    *,
+    location_id: int,
+    before_dt: datetime,
+) -> datetime | None:
+    return db.scalar(
+        select(func.max(Observation.ts))
+        .join(DataSource, Observation.source_id == DataSource.id)
+        .where(
+            Observation.location_id == location_id,
+            Observation.ts < before_dt,
+            DataSource.key.in_(ACTIVE_PUBLIC_SOURCE_KEYS),
+        )
+    )
+
+
 def _find_nearest_internal_location_with_data(
     db: Session,
     *,
     lat: float,
     lon: float,
-    day_start: datetime,
-    day_end: datetime,
+    before_dt: datetime,
 ) -> Location | None:
     distance_by_kind = get_external_timeseries_distance_map(db)
     trap_distance_m = float(distance_by_kind.get("trap", 44_400.0))
@@ -381,9 +396,8 @@ def _find_nearest_internal_location_with_data(
         .join(Observation, Observation.location_id == Location.id)
         .join(DataSource, Observation.source_id == DataSource.id)
         .where(
-            Location.kind.in_(INTERNAL_LOCATION_KINDS),
-            Observation.ts >= day_start,
-            Observation.ts < day_end,
+            Location.kind == "trap",
+            Observation.ts < before_dt,
             DataSource.key.in_(ACTIVE_PUBLIC_SOURCE_KEYS),
             func.abs(Location.lat - lat) <= max_delta,
             func.abs(Location.lon - lon) <= max_delta,
@@ -738,22 +752,16 @@ async def summary(
     day_start = datetime.combine(effective_day, time.min, tzinfo=timezone.utc)
     day_end = day_start + timedelta(days=1)
     measurement_loc = loc
-
-    direct_internal_rows_exist = False
+    latest_internal_ts = None
     if loc.id is not None:
-        direct_internal_rows_exist = db.scalar(
-            select(func.count(Observation.id))
-            .join(DataSource, Observation.source_id == DataSource.id)
-            .where(
-                Observation.location_id == loc.id,
-                Observation.ts >= day_start,
-                Observation.ts < day_end,
-                DataSource.key.in_(ACTIVE_PUBLIC_SOURCE_KEYS),
-            )
-        ) > 0
+        latest_internal_ts = _latest_internal_observation_ts(
+            db,
+            location_id=loc.id,
+            before_dt=day_end,
+        )
 
     if (
-        not direct_internal_rows_exist
+        latest_internal_ts is None
         and selected_external_location is None
         and preferred_source_key in {None, "pgniu_manual"}
     ):
@@ -761,11 +769,20 @@ async def summary(
             db,
             lat=float(lat),
             lon=float(lon),
-            day_start=day_start,
-            day_end=day_end,
+            before_dt=day_end,
         )
         if fallback_loc is not None:
             measurement_loc = fallback_loc
+            latest_internal_ts = _latest_internal_observation_ts(
+                db,
+                location_id=fallback_loc.id,
+                before_dt=day_end,
+            )
+
+    if latest_internal_ts is not None and latest_internal_ts.date() < effective_day:
+        effective_day = latest_internal_ts.date()
+        day_start = datetime.combine(effective_day, time.min, tzinfo=timezone.utc)
+        day_end = day_start + timedelta(days=1)
 
     external_rows_by_taxon: dict[int, tuple[float, str, str]] = {}
     external_targets = _pick_external_timeseries_locations(
@@ -902,7 +919,8 @@ async def summary(
 
     can_use_open_meteo = is_open_meteo_region_point(float(lat), float(lon))
 
-    # Подставим Open-Meteo только для отсутствующих аллергенов и только в РФ
+    # Open-Meteo добирает только те аллергены, которых пока не хватило
+    # и только там, где эта зона вообще поддерживается
     open_meteo_missing_taxa = [
         taxon_key for taxon_key in missing_taxa if taxon_key in OPEN_METEO_SUPPORTED_TAXA
     ]
@@ -922,7 +940,7 @@ async def summary(
 
         for it in items:
             if it["source"] is not None:
-                continue  # уже есть из БД
+                continue  # это значение уже пришло из БД
             k = it["key"]
             vname = POLLEN_VAR.get(k)
             if not vname:
@@ -1055,7 +1073,7 @@ def timeseries(
     start_dt = datetime.combine(start_day, time.min, tzinfo=timezone.utc)
     end_dt = datetime.combine(today + timedelta(days=1), time.min, tzinfo=timezone.utc)
 
-    # Получим все наблюдения за период
+    # Сначала собираем все наблюдения за нужный период
     rows = []
     if loc is not None:
         rows = db.execute(
@@ -1133,13 +1151,13 @@ def timeseries(
                 else "История построена по ближайшим внешним точкам."
             )
 
-    # Подготовим календарь дат (чтобы на графике были “пустые” дни тоже)
+    # Календарь делаем заранее, чтобы пустые дни тоже попали в график
     days_list = [(start_day + timedelta(days=i)).isoformat() for i in range(days)]
 
-    # series_by_source[source_key][day] = {raw_value, unit, danger_level}
+    # Тут копим точки по каждому источнику
     series_by_source: dict[str, dict[str, dict]] = {}
 
-    # best_by_day[day] = (priority, source_key, payload)
+    # А тут держим лучший источник на каждый день
     best_by_day: dict[str, tuple[int, str, dict]] = {}
 
     for ts, value, unit, source_key, priority in rows:
@@ -1157,12 +1175,12 @@ def timeseries(
         series_by_source.setdefault(source_key, {})
         series_by_source[source_key][day_str] = payload
 
-        # выбираем лучший источник на день по priority
+        # На день берём источник с максимальным priority
         cur_best = best_by_day.get(day_str)
         if (cur_best is None) or (priority > cur_best[0]):
             best_by_day[day_str] = (priority, source_key, payload | {"source": source_key})
 
-    # Собираем итоговый ответ: для каждого источника полный список days_list
+    # На выходе у каждого источника должен быть полный список дней
     series = []
     for source_key, m in series_by_source.items():
         points = [
@@ -1178,7 +1196,7 @@ def timeseries(
         ]
         series.append({"source": source_key, "points": points})
 
-    # Линия “best” (что реально будет показываться на главной приоритетно)
+    # Это приоритетная линия, которую потом проще всего показать как основную
     best_points = []
     for d in days_list:
         if d in best_by_day:
@@ -1193,8 +1211,8 @@ def timeseries(
                 "source": None,
             })
 
-    # Чтобы было стабильнее (manual выше, потом сайты, потом api) — отсортируем серии по приоритету
-    priority_map = {r[3]: r[4] for r in rows}  # source_key -> priority (может быть неполным)
+    # Для стабильного порядка ставим manual выше, потом сайты, потом api
+    priority_map = {r[3]: r[4] for r in rows}  # source_key -> priority, карта может быть неполной
     series.sort(key=lambda s: priority_map.get(s["source"], 0), reverse=True)
 
     return {

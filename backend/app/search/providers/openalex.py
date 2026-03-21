@@ -23,7 +23,7 @@ async def search_openalex(
     year_to: int | None = None,
     sort: str = "relevance",
 ) -> list[dict]:
-    api_key = os.getenv("OPENALEX_API_KEY")  # можно оставить пустым
+    api_key = os.getenv("OPENALEX_API_KEY")  # ключ можно не задавать
 
     params = {
         "search": term,

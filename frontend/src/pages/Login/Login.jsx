@@ -139,7 +139,7 @@ export default function Login() {
             </h3>
             <p className="login-card-copy">
               {mode === "register"
-                ? "Укажите email и пароль. Новый аккаунт создаётся с ролью student."
+                ? "Для регистрации укажите email и будущий пароль к аккаунту."
                 : "Используйте ваш логин и пароль для входа в EcoPollen."}
             </p>
           </div>
