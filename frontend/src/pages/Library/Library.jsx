@@ -366,13 +366,23 @@ export default function Library() {
   }, [pagination?.total_pages]);
 
   const maxVisiblePaginationButtons = useMemo(() => {
-    if (typeof window === "undefined" || window.innerWidth > 720 || !paginationPagesWidth) {
+    if (typeof window === "undefined") {
       return 9;
+    }
+
+    if (window.innerWidth > 720) {
+      return 9;
+    }
+
+    const mobileMaxSlots = window.innerWidth <= 420 ? 5 : 7;
+
+    if (!paginationPagesWidth) {
+      return mobileMaxSlots;
     }
 
     return Math.max(
       5,
-      Math.min(9, Math.floor((paginationPagesWidth + 8) / 52))
+      Math.min(mobileMaxSlots, Math.floor((paginationPagesWidth + 8) / 52))
     );
   }, [paginationPagesWidth]);
 
