@@ -8,12 +8,12 @@ from pydantic import BaseModel, Field
 
 class LocationRef(BaseModel):
     # Можно передать либо id существующей локации,
-    # либо координаты+название для новой станции/ловушки.
+    # либо координаты+название для новой ловушки.
     id: Optional[int] = None
     name: Optional[str] = None
     lat: Optional[float] = None
     lon: Optional[float] = None
-    kind: str = "trap"  # trap/custom
+    kind: str = "trap"
 
 
 class MeasurementValue(BaseModel):

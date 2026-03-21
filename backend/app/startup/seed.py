@@ -1,18 +1,13 @@
 import os
 
 from sqlalchemy.orm import Session
-from sqlalchemy import delete, select
+from sqlalchemy import select
 
-from ..domain.location_kinds import INTERNAL_LOCATION_KINDS
 from ..services.external_timeseries_distance_settings import ensure_external_timeseries_distance_settings
 from ..services.map_circle_styles import ensure_map_circle_styles
-from ..domain.models import DataSource, Observation, ExternalLocation, ExternalObservation, PollenTaxon, Location, User
+from ..domain.models import DataSource, PollenTaxon, User
 from ..domain.pollen_taxa_catalog import POLLEN_TAXA_CATALOG
-from ..domain.pollen_sources import (
-    ACTIVE_PUBLIC_SOURCES,
-    DEPRECATED_POLLEN_SOURCE_KEYS,
-    REMOVED_POLLEN_SOURCE_KEYS,
-)
+from ..domain.pollen_sources import ACTIVE_PUBLIC_SOURCES
 from ..core.security import hash_password
 
 DEFAULT_ADMIN_EMAIL = os.getenv("DEFAULT_ADMIN_EMAIL", "admin@example.local").strip().lower()
@@ -22,6 +17,7 @@ TAXON_MODEL_FIELDS = ("key", "name_ru", "emoji", "group")
 
 def _taxon_model_payload(item: dict) -> dict:
     return {field: item[field] for field in TAXON_MODEL_FIELDS if field in item}
+
 
 def seed_if_empty(db: Session) -> None:
     # 1) Админ для теста (создаётся только если пользователей нет)
@@ -35,7 +31,7 @@ def seed_if_empty(db: Session) -> None:
         db.add(admin)
         db.commit()
 
-    # 2) Источники данных: держим только живые публичные источники и ручной ввод.
+    # 2) Источники данных
     existing_sources = {
         source.key: source
         for source in db.scalars(select(DataSource)).all()
@@ -54,48 +50,6 @@ def seed_if_empty(db: Session) -> None:
             if getattr(source, field) != value:
                 setattr(source, field, value)
                 changed = True
-
-    for key in REMOVED_POLLEN_SOURCE_KEYS:
-        source = existing_sources.get(key)
-        if source is None:
-            continue
-
-        external_location_ids = db.scalars(
-            select(ExternalLocation.id).where(ExternalLocation.source_id == source.id)
-        ).all()
-        if external_location_ids:
-            db.execute(
-                delete(ExternalObservation).where(
-                    ExternalObservation.external_location_id.in_(external_location_ids)
-                )
-            )
-            db.execute(
-                delete(ExternalLocation).where(ExternalLocation.id.in_(external_location_ids))
-            )
-
-        db.execute(delete(Observation).where(Observation.source_id == source.id))
-        db.delete(source)
-        changed = True
-
-    for key in DEPRECATED_POLLEN_SOURCE_KEYS:
-        source = existing_sources.get(key)
-        if source is None:
-            continue
-
-        has_observations = db.scalar(
-            select(Observation.id)
-            .where(Observation.source_id == source.id)
-            .limit(1)
-        )
-        has_external_observations = db.scalar(
-            select(ExternalObservation.id)
-            .join(ExternalLocation, ExternalObservation.external_location_id == ExternalLocation.id)
-            .where(ExternalLocation.source_id == source.id)
-            .limit(1)
-        )
-        if has_observations is None and has_external_observations is None:
-            db.delete(source)
-            changed = True
 
     if changed:
         db.commit()
@@ -123,20 +77,4 @@ def seed_if_empty(db: Session) -> None:
                 taxa_changed = True
 
     if taxa_changed:
-        db.commit()
-
-    # 4) Базовые локации
-    existing_locations = {
-        location.name: location
-        for location in db.scalars(
-            select(Location).where(Location.kind.in_(INTERNAL_LOCATION_KINDS))
-        ).all()
-    }
-
-    legacy_city_ids = db.scalars(
-        select(Location.id).where(Location.kind == "city")
-    ).all()
-    if legacy_city_ids:
-        db.execute(delete(Observation).where(Observation.location_id.in_(legacy_city_ids)))
-        db.execute(delete(Location).where(Location.id.in_(legacy_city_ids)))
         db.commit()

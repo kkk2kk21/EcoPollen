@@ -70,7 +70,7 @@ class Location(Base):
     name: Mapped[str] = mapped_column(String(255))
     lat: Mapped[float] = mapped_column(Float)
     lon: Mapped[float] = mapped_column(Float)
-    kind: Mapped[str] = mapped_column(String(30), default="custom")  # trap/custom
+    kind: Mapped[str] = mapped_column(String(30), default="trap")  # trap
 
 
 class ExternalLocation(Base):

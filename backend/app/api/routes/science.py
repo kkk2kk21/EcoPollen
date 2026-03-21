@@ -67,36 +67,16 @@ def _get_or_create_location(db: Session, loc_in) -> Location:
     if loc_in.lat is None or loc_in.lon is None:
         raise HTTPException(status_code=400, detail="Нужно либо location.id, либо location.lat+location.lon")
 
-    name = (loc_in.name or f"Станция {loc_in.lat:.4f},{loc_in.lon:.4f}").strip()
+    name = (loc_in.name or f"Ловушка {loc_in.lat:.4f},{loc_in.lon:.4f}").strip()
     kind = (loc_in.kind or "trap").strip().lower()
     if kind not in INTERNAL_LOCATION_KINDS:
-        raise HTTPException(status_code=400, detail="kind должен быть: trap / custom")
+        raise HTTPException(status_code=400, detail="kind должен быть: trap")
 
-    # ВАЖНО: ловушки (trap) делаем отдельными сущностями по имени.
-    # Если ловушка с таким именем уже есть — возвращаем её.
-    if kind == "trap":
-        existing_by_name = db.scalar(select(Location).where(Location.kind == "trap", Location.name == name))
-        if existing_by_name:
-            return existing_by_name
+    existing_by_name = db.scalar(select(Location).where(Location.kind == "trap", Location.name == name))
+    if existing_by_name:
+        return existing_by_name
 
-        loc = Location(name=name, lat=float(loc_in.lat), lon=float(loc_in.lon), kind="trap")
-        db.add(loc)
-        db.commit()
-        db.refresh(loc)
-        return loc
-
-    # Для custom — не плодим дубликаты по близким координатам
-    eps = 0.0005  # ~50м
-    existing = db.scalar(
-        select(Location).where(
-            func.abs(Location.lat - float(loc_in.lat)) <= eps,
-            func.abs(Location.lon - float(loc_in.lon)) <= eps,
-        )
-    )
-    if existing:
-        return existing
-
-    loc = Location(name=name, lat=float(loc_in.lat), lon=float(loc_in.lon), kind=kind)
+    loc = Location(name=name, lat=float(loc_in.lat), lon=float(loc_in.lon), kind="trap")
     db.add(loc)
     db.commit()
     db.refresh(loc)

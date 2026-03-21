@@ -4,7 +4,6 @@ from fastapi import FastAPI
 
 from .core.db import Base, engine, SessionLocal
 from .services.pollen_scheduler import start_pollen_scheduler, stop_pollen_scheduler
-from .startup.schema_migrations import migrate_external_locations, run_schema_migrations
 from .startup.seed import seed_if_empty
 
 from .api.routes import pollen
@@ -45,9 +44,7 @@ OPENAPI_TAGS = [
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
-    run_schema_migrations(engine)
     with SessionLocal() as db:
-        migrate_external_locations(db)
         seed_if_empty(db)
 
     scheduler_task = await start_pollen_scheduler()

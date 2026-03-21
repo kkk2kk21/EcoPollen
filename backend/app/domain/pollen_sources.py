@@ -39,12 +39,3 @@ ACTIVE_PUBLIC_SOURCES = (
 )
 
 ACTIVE_PUBLIC_SOURCE_KEYS = tuple(source["key"] for source in ACTIVE_PUBLIC_SOURCES)
-
-DEPRECATED_POLLEN_SOURCE_KEYS = (
-    "allergotop",
-    "pollen_club",
-)
-
-REMOVED_POLLEN_SOURCE_KEYS = (
-    "open_meteo_demo",
-)

@@ -1,4 +1,4 @@
-INTERNAL_LOCATION_KINDS = ("trap", "custom")
+INTERNAL_LOCATION_KINDS = ("trap",)
 EXTERNAL_LOCATION_KINDS = ("station", "region", "open_meteo_grid")
 
 
