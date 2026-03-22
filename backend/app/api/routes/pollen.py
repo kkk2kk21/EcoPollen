@@ -89,30 +89,6 @@ def _heatmap_rows_for_day(
     if latest_ts is None:
         return []
 
-    latest_day = latest_ts.date()
-    active_window_start = datetime.combine(
-        latest_day - timedelta(days=HEATMAP_ACTIVE_LOCATION_RECENT_DAYS - 1),
-        time.min,
-        tzinfo=timezone.utc,
-    )
-    active_window_end = datetime.combine(
-        latest_day + timedelta(days=1),
-        time.min,
-        tzinfo=timezone.utc,
-    )
-    active_location_ids = (
-        select(Observation.location_id)
-        .join(Location, Observation.location_id == Location.id)
-        .where(
-            Observation.source_id == source_id,
-            Observation.taxon_id == taxon_id,
-            Observation.ts >= active_window_start,
-            Observation.ts < active_window_end,
-            *bbox_predicates,
-        )
-        .distinct()
-    )
-
     ranked = (
         select(
             Location.id.label("location_id"),
@@ -135,7 +111,6 @@ def _heatmap_rows_for_day(
             Observation.source_id == source_id,
             Observation.taxon_id == taxon_id,
             Observation.ts < day_end,
-            Observation.location_id.in_(active_location_ids),
             *bbox_predicates,
         )
         .subquery()
@@ -413,6 +388,48 @@ def _find_nearest_internal_location_with_data(
     )
 
 
+def _find_best_internal_location_with_data(
+    db: Session,
+    *,
+    lat: float,
+    lon: float,
+    before_dt: datetime,
+) -> Location | None:
+    distance_by_kind = get_external_timeseries_distance_map(db)
+    trap_distance_m = float(distance_by_kind.get("trap", 44_400.0))
+    max_delta = _distance_window_degrees(trap_distance_m)
+
+    rows = db.execute(
+        select(
+            Location,
+            func.max(Observation.ts).label("latest_ts"),
+        )
+        .join(Observation, Observation.location_id == Location.id)
+        .join(DataSource, Observation.source_id == DataSource.id)
+        .where(
+            Location.kind == "trap",
+            Observation.ts < before_dt,
+            DataSource.key.in_(ACTIVE_PUBLIC_SOURCE_KEYS),
+            func.abs(Location.lat - lat) <= max_delta,
+            func.abs(Location.lon - lon) <= max_delta,
+        )
+        .group_by(Location.id)
+    ).all()
+
+    ranked: list[tuple[datetime, float, Location]] = []
+    for candidate, latest_ts in rows:
+        distance_m = _distance_meters(lat, lon, candidate.lat, candidate.lon)
+        if distance_m > trap_distance_m:
+            continue
+        ranked.append((latest_ts, distance_m, candidate))
+
+    if not ranked:
+        return None
+
+    ranked.sort(key=lambda item: (item[0], -item[1]), reverse=True)
+    return ranked[0][2]
+
+
 def _distance_meters(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     earth_radius_m = 6_371_000.0
     lat1_rad = radians(float(lat1))
@@ -686,6 +703,7 @@ async def summary(
     location_id: int | None = Query(None, description="ID локации из /api/v1/locations (если указан — используется он)"),
     external_location_id: int | None = Query(None, description="ID внешней локации из /api/v1/map-locations"),
     preferred_source_key: str | None = Query(None, description="Предпочтительный источник для выбранной локации"),
+    day: date | None = Query(None, description="Дата сводки в локальном представлении клиента"),
     lat: float | None = Query(None, description="Широта (если location_id не указан)"),
     lon: float | None = Query(None, description="Долгота (если location_id не указан)"),
     db: Session = Depends(get_db),
@@ -731,7 +749,14 @@ async def summary(
             raise HTTPException(status_code=400, detail="Нужно указать либо location_id, либо external_location_id, либо lat+lon")
         nearest = None
         if preferred_source_key in {None, "pgniu_manual"}:
-            nearest = _find_nearest_internal_location(db, lat=float(lat), lon=float(lon))
+            nearest = _find_best_internal_location_with_data(
+                db,
+                lat=float(lat),
+                lon=float(lon),
+                before_dt=datetime.combine(datetime.now(timezone.utc).date() + timedelta(days=1), time.min, tzinfo=timezone.utc),
+            )
+            if nearest is None:
+                nearest = _find_nearest_internal_location(db, lat=float(lat), lon=float(lon))
         if nearest is not None:
             loc = nearest
             lat = loc.lat
@@ -747,7 +772,7 @@ async def summary(
                 kind="city",
             )
 
-    today = datetime.now(timezone.utc).date()
+    today = day or datetime.now(timezone.utc).date()
     effective_day = today
     day_start = datetime.combine(effective_day, time.min, tzinfo=timezone.utc)
     day_end = day_start + timedelta(days=1)
@@ -1007,11 +1032,18 @@ def timeseries(
     place_name: str | None = Query(None, description="Подпись выбранной точки"),
     taxon_key: str = Query(..., description="Напр.: birch, grass, alder, mugwort, ragweed"),
     days: int = Query(7, ge=1, le=30, description="Сколько дней показать (1..30)"),
+    end_day: date | None = Query(None, description="Последний день интервала в локальном представлении клиента"),
     db: Session = Depends(get_db),
 ):
     loc = None
     requested_location = None
     note = None
+    anchor_day = end_day or date.today()
+    internal_before_dt = datetime.combine(
+        anchor_day + timedelta(days=1),
+        time.min,
+        tzinfo=timezone.utc,
+    )
     if location_id is not None:
         loc = db.get(Location, location_id)
         if not loc:
@@ -1050,7 +1082,14 @@ def timeseries(
                 detail="Нужно указать location_id, external_location_id или lat+lon",
             )
 
-        nearest = _find_nearest_internal_location(db, lat=float(lat), lon=float(lon))
+        nearest = _find_best_internal_location_with_data(
+            db,
+            lat=float(lat),
+            lon=float(lon),
+            before_dt=internal_before_dt,
+        )
+        if nearest is None:
+            nearest = _find_nearest_internal_location(db, lat=float(lat), lon=float(lon))
         requested_location = {
             "id": nearest.id if nearest else None,
             "name": (place_name or (nearest.name if nearest else None) or "Выбранная точка"),
@@ -1060,7 +1099,7 @@ def timeseries(
         }
         loc = nearest
         if nearest is not None and place_name and place_name.strip() and place_name.strip() != nearest.name:
-            note = f"График построен по ближайшей внутренней локации: {nearest.name}."
+            note = f"График построен по внутренней локации: {nearest.name}."
         else:
             note = None
 
@@ -1068,7 +1107,7 @@ def timeseries(
     if not taxon:
         raise HTTPException(status_code=400, detail="Неизвестный taxon_key")
 
-    today = date.today()
+    today = anchor_day
     start_day = today - timedelta(days=days - 1)
     start_dt = datetime.combine(start_day, time.min, tzinfo=timezone.utc)
     end_dt = datetime.combine(today + timedelta(days=1), time.min, tzinfo=timezone.utc)

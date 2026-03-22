@@ -500,6 +500,10 @@ function groupPlacesForMenu(places) {
   return groups;
 }
 
+function shouldUseGenericCityLookup(place) {
+  return place?.kind === "city";
+}
+
 function filterLocalPlaces(places, query) {
   const normalizedQuery = normalizeSearchText(query);
   if (!normalizedQuery) {
@@ -1142,14 +1146,19 @@ export default function MapAnalytics() {
             const query = new URLSearchParams({
               taxon_key: taxonKey,
               days: "7",
+              end_day: day,
             });
-            if (selectedPlace.location_id) {
+            if (selectedPlace.location_id && !shouldUseGenericCityLookup(selectedPlace)) {
               query.set("location_id", String(selectedPlace.location_id));
             }
             if (selectedPlace.external_location_id) {
               query.set("external_location_id", String(selectedPlace.external_location_id));
             }
-            if (!selectedPlace.location_id || selectedPlace.external_location_id) {
+            if (
+              !selectedPlace.location_id ||
+              selectedPlace.external_location_id ||
+              shouldUseGenericCityLookup(selectedPlace)
+            ) {
               query.set("lat", String(selectedPlace.lat));
               query.set("lon", String(selectedPlace.lon));
               query.set("place_name", selectedPlace.name);

@@ -73,6 +73,18 @@ function homeMapZoom(place) {
   return 10;
 }
 
+function shouldUseGenericCityLookup(place) {
+  return place?.kind === "city";
+}
+
+function todayISO() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export default function Home() {
   const [places, setPlaces] = useState([]);
   const [selectedPlaceId, setSelectedPlaceId] = useState("");
@@ -213,7 +225,8 @@ export default function Home() {
         setError("");
 
         const query = new URLSearchParams();
-        if (selectedPlace.location_id) {
+        query.set("day", todayISO());
+        if (selectedPlace.location_id && !shouldUseGenericCityLookup(selectedPlace)) {
           query.set("location_id", String(selectedPlace.location_id));
         } else if (selectedPlace.external_location_id) {
           query.set("external_location_id", String(selectedPlace.external_location_id));
@@ -221,7 +234,7 @@ export default function Home() {
           query.set("lat", String(selectedPlace.lat));
           query.set("lon", String(selectedPlace.lon));
         }
-        if (selectedPlace.source_key) {
+        if (selectedPlace.source_key && !shouldUseGenericCityLookup(selectedPlace)) {
           query.set("preferred_source_key", String(selectedPlace.source_key));
         }
 

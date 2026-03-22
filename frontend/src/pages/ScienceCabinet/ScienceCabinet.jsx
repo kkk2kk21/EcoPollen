@@ -13,12 +13,30 @@ import { requestJson } from "../../shared/api/http";
 import MapAttributionCleaner from "../../shared/components/MapAttributionCleaner";
 import "./ScienceCabinet.css";
 
+const SCIENCE_TRAP_STORAGE_KEY = "ecopollen_science_trap_id";
+
 function todayISO() {
   const d = new Date();
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
+}
+
+function savePreferredTrapId(trapId) {
+  if (!trapId) {
+    localStorage.removeItem(SCIENCE_TRAP_STORAGE_KEY);
+    return;
+  }
+  localStorage.setItem(SCIENCE_TRAP_STORAGE_KEY, String(trapId));
+}
+
+function readPreferredTrapId() {
+  try {
+    return localStorage.getItem(SCIENCE_TRAP_STORAGE_KEY) || "";
+  } catch {
+    return "";
+  }
 }
 
 function parseCoordinate(value) {
@@ -172,13 +190,17 @@ export default function ScienceCabinet() {
     const traps = sortTrapLocations((locs || []).filter((item) => item.kind === "trap"));
     setLocations(traps);
 
-    const currentSelectedId = preferred.selectedId ?? locationId;
+    const storedSelectedId = readPreferredTrapId();
+    const currentSelectedId = preferred.selectedId ?? (locationId || storedSelectedId);
     if (currentSelectedId && traps.some((item) => String(item.id) === String(currentSelectedId))) {
       setLocationId(String(currentSelectedId));
+      savePreferredTrapId(String(currentSelectedId));
     } else if (traps.length > 0) {
       setLocationId(String(traps[0].id));
+      savePreferredTrapId(String(traps[0].id));
     } else {
       setLocationId("");
+      savePreferredTrapId("");
     }
 
     const currentEditId = preferred.editId ?? editTrapId;
@@ -356,7 +378,7 @@ export default function ScienceCabinet() {
         deleteId: res.location?.id,
       });
       setLocMode("select");
-      setTrapStatus(`Ловушка «${res.location?.name}» создана.`);
+      setTrapStatus(`Ловушка «${res.location?.name}» создана и выбрана для дальнейших замеров.`);
     } catch (e) {
       setTrapStatus(String(e));
     }
@@ -383,11 +405,11 @@ export default function ScienceCabinet() {
         }),
       });
       await refreshTrapLocations({
-        selectedId: locationId,
+        selectedId: res.location?.id,
         editId: res.location?.id,
         deleteId: deleteTrapId,
       });
-      setTrapStatus(`Ловушка «${res.location?.name}» обновлена.`);
+      setTrapStatus(`Ловушка «${res.location?.name}» обновлена и выбрана для дальнейших замеров.`);
     } catch (e) {
       setTrapStatus(String(e));
     }
@@ -654,7 +676,10 @@ export default function ScienceCabinet() {
                   <span>Ловушка</span>
                   <select
                     value={locationId}
-                    onChange={(e) => setLocationId(e.target.value)}
+                    onChange={(e) => {
+                      setLocationId(e.target.value);
+                      savePreferredTrapId(e.target.value);
+                    }}
                     style={{ width: "100%" }}
                   >
                     {locations.map((trap) => (
@@ -817,6 +842,7 @@ export default function ScienceCabinet() {
                               setEditTrapId(String(loc.id));
                             } else if (locMode === "select") {
                               setLocationId(String(loc.id));
+                              savePreferredTrapId(String(loc.id));
                             }
                             setTrapStatus("");
                           },
