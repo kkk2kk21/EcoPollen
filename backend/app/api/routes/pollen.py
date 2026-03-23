@@ -772,7 +772,14 @@ async def summary(
                 kind="city",
             )
 
-    today = day or datetime.now(timezone.utc).date()
+    if isinstance(day, datetime):
+        requested_day = day.date()
+    elif isinstance(day, date):
+        requested_day = day
+    else:
+        requested_day = None
+
+    today = requested_day or datetime.now(timezone.utc).date()
     effective_day = today
     day_start = datetime.combine(effective_day, time.min, tzinfo=timezone.utc)
     day_end = day_start + timedelta(days=1)
