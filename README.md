@@ -11,12 +11,12 @@ Docker
 Юнит-тесты вынесены отдельно от основного кода:
 
 backend: `tests/backend`
-frontend: `tests/frontend`
 
 ## Структура
 
 `backend` - API и работа с базой данных
 `frontend` - клиентская часть
+`tests/backend` - тесты серверной части
 `docker-compose.yml` - основной файл запуска проекта
 
 ## Запуск
